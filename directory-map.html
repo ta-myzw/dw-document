@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>大山ワンダー ディレクトリマップ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ECEEEC; --paper:#FFFFFF; --ink:#1E2328; --sub:#5E6B74; --line:#C9CFD2; --line2:#E1E5E6;
+  --accent:#386A76; --accent-soft:#E2ECEE; --note:#FFF7DB; --note-ink:#6B5300;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Zen Kaku Gothic New',system-ui,sans-serif;font-size:14px;line-height:1.6}
+a{color:inherit}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#244A52;word-break:break-all}
+.u-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.app{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}
+nav.side{position:sticky;top:0;height:100vh;overflow:auto;background:#22303A;color:#E8EDEF;padding:22px 16px 40px}
+nav.side h1{font-size:15px;margin:0 0 4px;letter-spacing:.06em;line-height:1.5}
+nav.side .ver{font-size:11px;color:#B8C4C9;margin-bottom:18px}
+nav.side .grp{font-size:10px;letter-spacing:.2em;color:#B8C4C9;margin:18px 0 6px}
+nav.side a{display:block;text-decoration:none;padding:6px 10px;border-radius:6px;font-size:13px}
+nav.side a:hover{background:rgba(255,255,255,.1)}
+nav.side a.sub{padding-left:24px;font-size:12px;color:#D5DEE1}
+nav.side .ref{display:block;font-size:11.5px;color:#B8C4C9;padding:3px 10px;line-height:1.5}
+main{padding:28px 32px 80px;min-width:0}
+section{margin-bottom:56px}
+.pagebar{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:16px}
+.pagebar h2{margin:0;font-size:22px;letter-spacing:.04em}
+.pagebar .meta{font-size:12px;color:var(--sub)}
+.purpose{background:#fff;border-left:3px solid var(--accent);padding:12px 16px;margin-bottom:18px;font-size:13px;border-radius:0 8px 8px 0}
+.purpose b{color:var(--accent)}
+.ov{background:#fff;border-radius:8px;padding:22px 26px;margin-bottom:16px}
+.ov h3{margin:0 0 10px;font-size:15px}
+.rules{margin:0;padding-left:20px;font-size:13px;line-height:1.9}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.stats div{background:#fff;border-radius:8px;padding:14px 18px}
+.stats b{display:block;font-size:28px;font-weight:500;color:var(--accent);line-height:1.2}
+.stats span{font-size:12px;color:var(--sub)}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.st{display:inline-block;font-size:11.5px;border-radius:10px;padding:1px 9px;white-space:nowrap;border:1px solid transparent}
+.st-done{background:#386A76;color:#fff}
+.st-wf{background:#E2ECEE;color:#244A52}
+.st-new{background:#fff;color:#4A565C;border-color:#AEB8BC}
+.st-ask{background:#FFF1BF;color:#6B5300;border-color:#E3CF94}
+/* tree */
+.tree{background:#fff;border-radius:8px;padding:24px 26px}
+.t-root{margin-bottom:14px}
+.t-grp{margin:0 0 6px}
+.t-grp-h{font-size:11px;letter-spacing:.2em;color:var(--sub);margin:14px 0 4px 18px}
+.tree ul{list-style:none;margin:0;padding-left:18px;border-left:1px solid #D3DADC}
+.tree li{position:relative;padding:3px 0 3px 14px}
+.tree li::before{content:"";position:absolute;left:-1px;top:16px;width:12px;border-top:1px solid #D3DADC}
+.tnode{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:4px 10px;border-radius:6px;border:1px solid transparent}
+.tnode.st-done{background:#386A76;color:#fff}.tnode.st-done code{color:#E2ECEE}
+.tnode.st-wf{background:#F1F6F7}
+.tnode.st-new{background:#fff;border-color:#C9CFD2;border-style:dashed}
+.tnode.st-ask{background:#FFF7DB;border-color:#E3CF94}
+.tname{font-weight:500}
+.tcount{display:inline-block;font-size:11px;background:#22303A;color:#fff;border-radius:8px;padding:0 7px;font-weight:400}
+.tree details summary{cursor:pointer;font-size:12.5px;color:var(--accent);padding:3px 0}
+.tree .t-many{columns:2;column-gap:28px;border-left:0;padding-left:4px}
+.tree .t-many li{break-inside:avoid}
+.tree .t-many li::before{display:none}
+/* table */
+.filters{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.search input{width:260px;max-width:100%;padding:7px 12px;border:1px solid var(--line);border-radius:18px;font:inherit;font-size:13px;background:#fff}
+.fbtn{border:1px solid var(--line);background:#fff;border-radius:16px;padding:5px 12px;font:inherit;font-size:12.5px;cursor:pointer;color:var(--ink)}
+.fbtn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.fbtn:focus-visible,.search input:focus-visible,nav.side a:focus-visible,summary:focus-visible{outline:2px solid #E0B400;outline-offset:2px}
+.tbl-wrap{background:#fff;border-radius:8px;overflow:auto;max-height:80vh}
+table.t{width:100%;border-collapse:collapse;font-size:12.5px}
+table.t th,table.t td{padding:8px 10px;border-bottom:1px solid var(--line2);text-align:left;vertical-align:top}
+table.t thead th{position:sticky;top:0;z-index:2;background:#22303A;color:#fff;font-weight:500;font-size:12px;white-space:nowrap}
+table.map{min-width:1680px}
+table.t td code{word-break:normal;white-space:nowrap}
+table.map td:nth-child(5){min-width:150px}
+table.map td.id{white-space:nowrap;color:var(--sub);font-size:11.5px}
+table.map td.nm{min-width:220px;font-weight:500}
+table.map td.url{min-width:170px}
+table.map td.c{text-align:center}
+table.map td.src{min-width:200px;color:#4A565C}
+table.map td.note{min-width:260px;color:#4A565C}
+table.map tr.grp-row th{position:sticky;top:37px;z-index:1;background:#DDE5E6;color:#22303A;font-size:12px;letter-spacing:.12em;scroll-margin-top:40px}
+table.map tr[data-st="ask"] td{background:#FFFBEA}
+table.map tr.hide{display:none}
+table.rd{min-width:980px}
+table.rd td.c{text-align:center;color:var(--sub)}
+table.rd tr.warn td{background:#FFFBEA}
+table.rd tr.dim td{color:#5E6B74}
+.qs{background:#fff;border-radius:8px;padding:20px 26px 20px 46px;margin:0}
+.qs li{margin-bottom:14px}
+.qs li b{font-size:14px}
+.qs li p{margin:4px 0 0;font-size:13px;line-height:1.85;color:#3A454C}
+@media (max-width: 900px){
+  .app{grid-template-columns:1fr}
+  nav.side{position:static;height:auto;padding:16px}
+  nav.side .grp, nav.side .ref{display:none}
+  nav.side a{display:inline-block}
+  main{padding:20px 14px 60px}
+  .stats{grid-template-columns:1fr 1fr}
+  .tree{padding:16px 12px}
+  .tree .t-many{columns:1}
+  .tbl-wrap{max-height:none}
+}
+.qs.done{padding-left:46px;background:#F4F8F8}
+
+</style>
+</head>
+<body>
+<div class="app">
+<nav class="side" aria-label="目次">
+  <h1>大山ワンダー<br>ディレクトリマップ</h1>
+  <div class="ver">v3.1 ／ 2026-10-19</div>
+  <div class="grp">VIEW</div>
+  <a href="#summary">概要とURLのルール</a>
+  <a href="#tree">サイトツリー</a>
+  <a href="#list">ページ一覧</a>
+  <a href="#g-0" class="sub">トップ</a><a href="#g-1" class="sub">探す・めぐる</a><a href="#g-2" class="sub">知る・出会う</a><a href="#g-3" class="sub">エリア</a><a href="#g-4" class="sub">読みもの・お知らせ</a><a href="#g-5" class="sub">ガイド・サイト情報</a><a href="#g-6" class="sub">システム</a>
+  <a href="#redirect">旧URLからの転送（301）</a>
+  <a href="#questions">確認待ちと決定済み</a>
+  <div class="grp">関連資料</div>
+  <span class="ref">03_下層WF／大山ワンダー_下層WF.html</span>
+  <span class="ref">02_コンテンツ整理／大山ワンダー_コンテンツ整理表.xlsx</span>
+  <span class="ref">05_静的HTML／styleguide.html</span>
+</nav>
+<main>
+  <section id="summary">
+    <div class="pagebar"><h2>概要とURLのルール</h2><div class="meta">v3.1：プラン一覧（検索結果を含む）を静的HTML化。v3：URLの決めごとをすべて反映、スポット詳細・Language・デジタルカタログを追加（下層WF v3 と対応）</div></div>
+    <div class="purpose"><b>このマップの役割</b>　新サイトの全ページを、URL・WFのテンプレート番号・WordPressの種別とテンプレートファイル・静的HTMLのファイル・現サイトの移行元と一緒に一覧にしたもの。下層の制作（静的HTML → WP）とリダイレクト設定の基準にする。黄色の「要確認」は下の「確認待ち」と対応。</div>
+    <div class="stats">
+      <div><b>86</b><span>行（ページ・ページ群）</span></div>
+      <div><b>24</b><span>プラン詳細（F-4を含む）</span></div>
+      <div><b>24</b><span>WPテンプレートファイル</span></div>
+      <div><b>119</b><span>旧URLの301転送</span></div>
+    </div>
+    <div class="legend">
+      <span class="st st-done">静的HTML済 5</span>
+      <span class="st st-wf">WF済・未制作 73</span>
+      <span class="st st-new">WF未作成 7</span>
+      <span class="st st-ask">要確認 1</span>
+    </div>
+    <div class="ov">
+      <h3>URLのルール（案）</h3>
+      <ul class="rules">
+        <li>すべて小文字・英数字とハイフン、末尾はスラッシュ（<code>/plan/a-2/</code>）。日本語URLは使わない。</li>
+        <li>階層は「種類／個別」の2段まで（<code>/stories/iron/</code>）。分類は種類の下に置く（<code>/journal/type/column/</code> <code>/news/category/media/</code>）。</li>
+        <li>プランはコース番号（<code>a-2</code>）、エリアは市町村名のローマ字（<code>/area/hino/</code>）。それ以外は今の綴りを正とする（英語とローマ字が混在するが、決定済みのものは変えない）。</li>
+        <li>気分・季節・テーマは専用ページを作らず、プランの検索結果にする（<code>/plan/?mood=zekkei</code> <code>/plan/?season=autumn</code> <code>/plan/?theme=katana</code>）。読み物は特集記事（<code>/journal/katana/</code>）に置き、検索結果の上に導入として出す。</li>
+        <li>その他の絞り込みもURLパラメータで表し、別ページは作らない（<code>/journal/?axis=katana</code> <code>/people/?job=brewer</code>）。</li>
+        <li>現サイトで外部からのリンクが多そうなURL（<code>/contact/</code> <code>/contact_kanko/</code> <code>/policy/</code>）は据え置く。それ以外の旧URLは下の表のとおり301で転送する。</li>
+        <li>フォームの確認・完了画面、転送用のURLは検索エンジンに載せない（noindex・サイトマップから除外）。</li>
+      </ul>
+    </div>
+    <div class="ov">
+      <h3>静的HTMLの作り方</h3>
+      <ul class="rules">
+        <li>05_静的HTML の中に、URLと同じフォルダ構成で <code>index.html</code> を置く（<code>plan/a-2/index.html</code>）。共通のCSS・JS・アイコンは <code>assets/</code> を参照。</li>
+        <li>同じテンプレートのページは代表1ページだけ作る（表の「静的HTML」に「代表」とあるもの）。WP化のときにテンプレートファイルに置き換える。</li>
+        <li>部品は styleguide.html のものだけで組む。新しい部品が必要になったら styleguide.html とデザインシステムに追加してから使う。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="tree">
+    <div class="pagebar"><h2>サイトツリー</h2><div class="meta">色は状態。繰り返しのページは件数でまとめ、開くと一覧</div></div>
+    <div class="tree">
+<div class="t-root"><span class="tnode st-done"><span class="tname">トップ</span><code>/</code></span></div>
+<div class="t-grp"><div class="t-grp-h">トップ</div><ul>
+<li><span class="tnode st-wf"><span class="tname">大山ワンダーとは</span><code>/about/</code></span>
+</li>
+</ul></div>
+<div class="t-grp"><div class="t-grp-h">探す・めぐる</div><ul>
+<li><span class="tnode st-done"><span class="tname">観光タクシー旅プラン（一覧・検索結果）</span><code>/plan/</code></span>
+<ul>
+<li><details><summary>/plan/… の詳細 24件</summary><ul class="t-many"><li><span class="tnode st-wf"><span class="tname">A-1 絶景の城 米子城と城下町めぐり</span><code>/plan/a-1/</code></span></li><li><span class="tnode st-wf"><span class="tname">A-2 童子切安綱を生んだ伯耆安綱ゆかりの地めぐり</span><code>/plan/a-2/</code></span></li><li><span class="tnode st-wf"><span class="tname">A-3 開運祈願とたたらの歴史にふれる旅</span><code>/plan/a-3/</code></span></li><li><span class="tnode st-wf"><span class="tname">A-4 太平記ゆかりの地をめぐる</span><code>/plan/a-4/</code></span></li><li><span class="tnode st-wf"><span class="tname">A-5 小泉八雲とセツの足跡をたどる</span><code>/plan/a-5/</code></span></li><li><span class="tnode st-wf"><span class="tname">B-1 ファミリーにおすすめ！大山ふれあいの旅</span><code>/plan/b-1/</code></span></li><li><span class="tnode st-wf"><span class="tname">B-2 鋭い岩峰の大山北壁</span><code>/plan/b-2/</code></span></li><li><span class="tnode st-wf"><span class="tname">B-3 端正な山容 大山西側 伯耆富士の大パノラマ</span><code>/plan/b-3/</code></span></li><li><span class="tnode st-wf"><span class="tname">B-4 植田正治も愛した美しい鳥取</span><code>/plan/b-4/</code></span></li><li><span class="tnode st-wf"><span class="tname">B-5 日本最大級のフラワーパークと人気のみるくの里</span><code>/plan/b-5/</code></span></li><li><span class="tnode st-wf"><span class="tname">B-6 断崖絶壁 大山南壁 フォトジェニックな奥大山</span><code>/plan/b-6/</code></span></li><li><span class="tnode st-wf"><span class="tname">C-1 境港満喫</span><code>/plan/c-1/</code></span></li><li><span class="tnode st-wf"><span class="tname">C-2 さかなと鬼太郎のまち散策</span><code>/plan/c-2/</code></span></li><li><span class="tnode st-wf"><span class="tname">C-3 革新と匠の技をめぐる</span><code>/plan/c-3/</code></span></li><li><span class="tnode st-wf"><span class="tname">C-4 えびす様の総本宮</span><code>/plan/c-4/</code></span></li><li><span class="tnode st-wf"><span class="tname">C-5 水木ワールドの原点と海のめぐみを感じる</span><code>/plan/c-5/</code></span></li><li><span class="tnode st-wf"><span class="tname">D-1 大国主命ゆかりの再生神話と花の旅</span><code>/plan/d-1/</code></span></li><li><span class="tnode st-wf"><span class="tname">D-2 開運神社めぐり(1)</span><code>/plan/d-2/</code></span></li><li><span class="tnode st-wf"><span class="tname">D-3 開運神社めぐり(2)</span><code>/plan/d-3/</code></span></li><li><span class="tnode st-wf"><span class="tname">E-1 世界一のビールと地酒を味わう</span><code>/plan/e-1/</code></span></li><li><span class="tnode st-wf"><span class="tname">F-1 日本一美しいと呼ばれる廃線跡と白壁のまちめぐり</span><code>/plan/f-1/</code></span></li><li><span class="tnode st-wf"><span class="tname">F-2 アートとレトロな街並みをめぐる</span><code>/plan/f-2/</code></span></li><li><span class="tnode st-ask"><span class="tname">F-4 地元の旬を探そう！ご当地ソフトも食べ比べ！</span><code>/plan/f-4/</code></span></li><li><span class="tnode st-wf"><span class="tname">G-1 美しいオシドリ観察と金運祈願の旅</span><code>/plan/g-1/</code></span></li></ul></details></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">予約フォーム：入力</span><code>/plan/reserve/</code></span></li>
+<li class="lv4"><span class="tnode st-new"><span class="tname">予約フォーム：確認</span><code>/plan/reserve/confirm/</code></span></li>
+<li class="lv4"><span class="tnode st-new"><span class="tname">予約フォーム：送信完了</span><code>/plan/reserve/thanks/</code></span></li>
+<li class="lv3"><span class="tnode st-done"><span class="tname">検索結果：気分で絞り込み（7）</span><code>/plan/?mood=｛気分｝</code></span></li>
+<li class="lv3"><span class="tnode st-done"><span class="tname">検索結果：季節で絞り込み（4）</span><code>/plan/?season=｛季節｝</code></span></li>
+<li class="lv3"><span class="tnode st-done"><span class="tname">検索結果：テーマで絞り込み（5）</span><code>/plan/?theme=｛軸｝</code></span></li>
+</ul>
+</li>
+</ul></div>
+<div class="t-grp"><div class="t-grp-h">知る・出会う</div><ul>
+<li><span class="tnode st-wf"><span class="tname">物語（一覧）</span><code>/stories/</code></span>
+<ul>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">森の物語</span><code>/stories/forest/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">信仰の物語</span><code>/stories/faith/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">鉄の物語</span><code>/stories/iron/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">水の物語</span><code>/stories/water/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">海の物語</span><code>/stories/sea/</code></span></li>
+</ul>
+</li>
+<li><span class="tnode st-wf"><span class="tname">地域の人（一覧）</span><code>/people/</code></span>
+<ul>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">地域の人：酒蔵（蔵人）</span><code>/people/brewer-01/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">地域の人：漁師</span><code>/people/fisher-01/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">地域の人：職人</span><code>/people/craft-01/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">地域の人：神職</span><code>/people/priest-01/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">地域の人：ガイド</span><code>/people/guide-01/</code></span></li>
+</ul>
+</li>
+</ul></div>
+<div class="t-grp"><div class="t-grp-h">エリア</div><ul>
+<li><span class="tnode st-wf"><span class="tname">エリア紹介（一覧）</span><code>/area/</code></span>
+<ul>
+<li><details><summary>/area/… の詳細 10件</summary><ul class="t-many"><li><span class="tnode st-wf"><span class="tname">米子市</span><code>/area/yonago/</code></span></li><li><span class="tnode st-wf"><span class="tname">境港市</span><code>/area/sakaiminato/</code></span></li><li><span class="tnode st-wf"><span class="tname">日吉津村</span><code>/area/hiezu/</code></span></li><li><span class="tnode st-wf"><span class="tname">大山町</span><code>/area/daisen/</code></span></li><li><span class="tnode st-wf"><span class="tname">伯耆町</span><code>/area/hoki/</code></span></li><li><span class="tnode st-wf"><span class="tname">南部町</span><code>/area/nanbu/</code></span></li><li><span class="tnode st-wf"><span class="tname">江府町</span><code>/area/kofu/</code></span></li><li><span class="tnode st-wf"><span class="tname">日野町</span><code>/area/hino/</code></span></li><li><span class="tnode st-wf"><span class="tname">日南町</span><code>/area/nichinan/</code></span></li><li><span class="tnode st-wf"><span class="tname">倉吉市</span><code>/area/kurayoshi/</code></span></li></ul></details></li>
+</ul>
+</li>
+</ul></div>
+<div class="t-grp"><div class="t-grp-h">読みもの・お知らせ</div><ul>
+<li><span class="tnode st-wf"><span class="tname">ジャーナル（一覧）</span><code>/journal/</code></span>
+<ul>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">記事の種類：特集</span><code>/journal/type/feature/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">記事の種類：コラム</span><code>/journal/type/column/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">記事の種類：インタビュー</span><code>/journal/type/interview/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">記事の種類：動画</span><code>/journal/type/movie/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">特集記事（気分・季節・テーマ）</span><code>/journal/｛特集スラッグ｝/</code><span class="tcount">順次</span></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">ジャーナル記事</span><code>/journal/｛記事スラッグ｝/</code><span class="tcount">随時</span></span></li>
+</ul>
+</li>
+<li><span class="tnode st-wf"><span class="tname">イベント（一覧）</span><code>/event/</code></span>
+<ul>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">イベント詳細</span><code>/event/｛スラッグ｝/</code><span class="tcount">随時</span></span></li>
+</ul>
+</li>
+<li><span class="tnode st-wf"><span class="tname">お知らせ（一覧）</span><code>/news/</code></span>
+<ul>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">お知らせの種類：お知らせ</span><code>/news/category/info/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">お知らせの種類：メディア掲載</span><code>/news/category/media/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">お知らせの種類：事業者向け</span><code>/news/category/business/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">お知らせの種類：重要</span><code>/news/category/important/</code></span></li>
+<li class="lv3"><span class="tnode st-wf"><span class="tname">お知らせ詳細</span><code>/news/｛スラッグ｝/</code><span class="tcount">随時</span></span></li>
+</ul>
+</li>
+</ul></div>
+<div class="t-grp"><div class="t-grp-h">ガイド・サイト情報</div><ul>
+<li><span class="tnode st-wf"><span class="tname">アクセス</span><code>/access/</code></span>
+</li>
+<li><span class="tnode st-new"><span class="tname">登山ガイド</span><code>/guide/tozan/</code></span>
+</li>
+<li><span class="tnode st-wf"><span class="tname">当サイトについて</span><code>/about-site/</code></span>
+</li>
+<li><span class="tnode st-wf"><span class="tname">プライバシーポリシー</span><code>/policy/</code></span>
+</li>
+<li><span class="tnode st-wf"><span class="tname">各観光エリアのお問い合わせ</span><code>/contact_kanko/</code></span>
+</li>
+<li><span class="tnode st-wf"><span class="tname">山陰観光リンク</span><code>/links/</code></span>
+</li>
+<li><span class="tnode st-wf"><span class="tname">写真データ・レンタル</span><code>/photo/</code></span>
+</li>
+<li><span class="tnode st-wf"><span class="tname">Language ／ 外国の方へ</span><code>/other-languages/</code></span>
+</li>
+<li><span class="tnode st-wf"><span class="tname">デジタルカタログ（観光ガイドブック 4言語）</span><code>/digitalcatalog/</code></span>
+</li>
+<li><span class="tnode st-wf"><span class="tname">お問い合わせ：入力</span><code>/contact/</code></span>
+<ul>
+<li class="lv3"><span class="tnode st-new"><span class="tname">お問い合わせ：確認</span><code>/contact/confirm/</code></span></li>
+<li class="lv3"><span class="tnode st-new"><span class="tname">お問い合わせ：送信完了</span><code>/contact/thanks/</code></span></li>
+</ul>
+</li>
+</ul></div>
+<div class="t-grp"><div class="t-grp-h">システム</div><ul>
+<li><span class="tnode st-wf"><span class="tname">スポット詳細</span><code>/spot/｛スラッグ｝/</code><span class="tcount">約90</span></span>
+</li>
+<li><span class="tnode st-new"><span class="tname">404（ページが見つかりません）</span><code>—</code></span>
+</li>
+<li><span class="tnode st-new"><span class="tname">XMLサイトマップ</span><code>/wp-sitemap.xml</code></span>
+</li>
+</ul></div>
+</div>
+  </section>
+
+  <section id="list">
+    <div class="pagebar"><h2>ページ一覧</h2>
+      <div class="filters" role="group" aria-label="状態で絞り込み">
+        <label class="search"><span class="u-vh">キーワードで絞り込み</span><input type="search" id="q" placeholder="ページ名・URL・移行元で絞り込み"></label>
+        <button type="button" class="fbtn" aria-pressed="true" data-f="all">すべて</button>
+        <button type="button" class="fbtn" aria-pressed="false" data-f="wf">WF済・未制作</button>
+        <button type="button" class="fbtn" aria-pressed="false" data-f="new">WF未作成</button>
+        <button type="button" class="fbtn" aria-pressed="false" data-f="ask">要確認</button>
+      </div>
+    </div>
+    <div class="tbl-wrap" tabindex="0" role="region" aria-label="ページ一覧（横にスクロール）"><table class="t map" id="map"><thead><tr><th>ID</th><th>ページ</th><th>URL</th><th>WF</th><th>WPの種別</th><th>テンプレート</th><th>静的HTML</th><th>移行元（現サイト）</th><th>状態</th><th>備考</th></tr></thead><tbody>
+<tr class="grp-row" id="g-0"><th colspan="10">トップ</th></tr>
+<tr data-st="done"><td class="id">0</td><td class="nm" style="padding-left:8px">トップ</td><td class="url"><code>/</code></td><td class="c">—</td><td>固定（フロントページ）</td><td><code>front-page.php</code></td><td><code>index.html</code></td><td class="src">/ ・ /index2025/</td><td><span class="st st-done">静的HTML済</span></td><td class="note">オープニング・メガメニュー・SPメニューを含む。v20 を静的HTML化済み</td></tr>
+<tr data-st="wf"><td class="id">1</td><td class="nm" style="padding-left:24px">大山ワンダーとは</td><td class="url"><code>/about/</code></td><td class="c">01</td><td>固定ページ</td><td><code>page-about.php</code></td><td><code>about/index.html</code></td><td class="src">/policy/logo/（ロゴの意味）・企画書 4-3</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">ブランドストーリー・めぐり図・10市町村・ロゴ・サイトの使い方</td></tr>
+<tr class="grp-row" id="g-1"><th colspan="10">探す・めぐる</th></tr>
+<tr data-st="done"><td class="id">2</td><td class="nm" style="padding-left:24px">観光タクシー旅プラン（一覧・検索結果）</td><td class="url"><code>/plan/</code></td><td class="c">02</td><td>アーカイブ（CPT: plan）</td><td><code>archive-plan.php</code></td><td><code>plan/index.html</code></td><td class="src">/taxi/</td><td><span class="st st-done">静的HTML済</span></td><td class="note">気分・季節・テーマのカード、「すべての〜」「探してみる」「プランを探す」の着地点。?mood= ?season= ?theme= ?time= ?from= で選択済み、?filter=mood|season|theme で絞り込み欄を開くだけ。条件が1つのときは特集記事（6-f）の導入を一覧の上に表示</td></tr>
+<tr data-st="wf"><td class="id">2-A-1</td><td class="nm" style="padding-left:40px">└ A-1 絶景の城 米子城と城下町めぐり</td><td class="url"><code>/plan/a-1/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/taxi_course/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">2-A-2</td><td class="nm" style="padding-left:40px">└ A-2 童子切安綱を生んだ伯耆安綱ゆかりの地めぐり</td><td class="url"><code>/plan/a-2/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code>plan/a-2/index.html（代表）</code></td><td class="src">/taxi/s129/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">霊宝閣は冬期閉館</td></tr>
+<tr data-st="wf"><td class="id">2-A-3</td><td class="nm" style="padding-left:40px">└ A-3 開運祈願とたたらの歴史にふれる旅</td><td class="url"><code>/plan/a-3/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/q129/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">2-A-4</td><td class="nm" style="padding-left:40px">└ A-4 太平記ゆかりの地をめぐる</td><td class="url"><code>/plan/a-4/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/y148/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">2-A-5</td><td class="nm" style="padding-left:40px">└ A-5 小泉八雲とセツの足跡をたどる</td><td class="url"><code>/plan/a-5/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/v186/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">10市町村外を含む（エリア表示を確認）</td></tr>
+<tr data-st="wf"><td class="id">2-B-1</td><td class="nm" style="padding-left:40px">└ B-1 ファミリーにおすすめ！大山ふれあいの旅</td><td class="url"><code>/plan/b-1/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/u645/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">2-B-2</td><td class="nm" style="padding-left:40px">└ B-2 鋭い岩峰の大山北壁</td><td class="url"><code>/plan/b-2/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/n100/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">2-B-3</td><td class="nm" style="padding-left:40px">└ B-3 端正な山容 大山西側 伯耆富士の大パノラマ</td><td class="url"><code>/plan/b-3/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/s711/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">12〜3月運休</td></tr>
+<tr data-st="wf"><td class="id">2-B-4</td><td class="nm" style="padding-left:40px">└ B-4 植田正治も愛した美しい鳥取</td><td class="url"><code>/plan/b-4/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/x603/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">12〜3月運休</td></tr>
+<tr data-st="wf"><td class="id">2-B-5</td><td class="nm" style="padding-left:40px">└ B-5 日本最大級のフラワーパークと人気のみるくの里</td><td class="url"><code>/plan/b-5/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/c225/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">12〜3月運休</td></tr>
+<tr data-st="wf"><td class="id">2-B-6</td><td class="nm" style="padding-left:40px">└ B-6 断崖絶壁 大山南壁 フォトジェニックな奥大山</td><td class="url"><code>/plan/b-6/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/e163/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">12〜3月運休</td></tr>
+<tr data-st="wf"><td class="id">2-C-1</td><td class="nm" style="padding-left:40px">└ C-1 境港満喫</td><td class="url"><code>/plan/c-1/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/e551/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">10市町村外を含む（エリア表示を確認）</td></tr>
+<tr data-st="wf"><td class="id">2-C-2</td><td class="nm" style="padding-left:40px">└ C-2 さかなと鬼太郎のまち散策</td><td class="url"><code>/plan/c-2/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/p344/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">2-C-3</td><td class="nm" style="padding-left:40px">└ C-3 革新と匠の技をめぐる</td><td class="url"><code>/plan/c-3/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/m134/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">2-C-4</td><td class="nm" style="padding-left:40px">└ C-4 えびす様の総本宮</td><td class="url"><code>/plan/c-4/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/r926/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">10市町村外を含む（エリア表示を確認）</td></tr>
+<tr data-st="wf"><td class="id">2-C-5</td><td class="nm" style="padding-left:40px">└ C-5 水木ワールドの原点と海のめぐみを感じる</td><td class="url"><code>/plan/c-5/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/m714/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">2-D-1</td><td class="nm" style="padding-left:40px">└ D-1 大国主命ゆかりの再生神話と花の旅</td><td class="url"><code>/plan/d-1/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/z133/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">2-D-2</td><td class="nm" style="padding-left:40px">└ D-2 開運神社めぐり(1)</td><td class="url"><code>/plan/d-2/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/z961/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">2-D-3</td><td class="nm" style="padding-left:40px">└ D-3 開運神社めぐり(2)</td><td class="url"><code>/plan/d-3/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/p646/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">10市町村外を含む（エリア表示を確認）</td></tr>
+<tr data-st="wf"><td class="id">2-E-1</td><td class="nm" style="padding-left:40px">└ E-1 世界一のビールと地酒を味わう</td><td class="url"><code>/plan/e-1/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/s110/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">2-F-1</td><td class="nm" style="padding-left:40px">└ F-1 日本一美しいと呼ばれる廃線跡と白壁のまちめぐり</td><td class="url"><code>/plan/f-1/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/n311/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">2-F-2</td><td class="nm" style="padding-left:40px">└ F-2 アートとレトロな街並みをめぐる</td><td class="url"><code>/plan/f-2/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/x359/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="ask"><td class="id">2-F-4</td><td class="nm" style="padding-left:40px">└ F-4 地元の旬を探そう！ご当地ソフトも食べ比べ！</td><td class="url"><code>/plan/f-4/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/g106/</td><td><span class="st st-ask">要確認</span></td><td class="note">現サイトの一覧に未掲載。運行有無を協議会に確認</td></tr>
+<tr data-st="wf"><td class="id">2-G-1</td><td class="nm" style="padding-left:40px">└ G-1 美しいオシドリ観察と金運祈願の旅</td><td class="url"><code>/plan/g-1/</code></td><td class="c">03</td><td>詳細（CPT: plan）</td><td><code>single-plan.php</code></td><td><code></code></td><td class="src">/taxi/g145/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">11〜3月のみ</td></tr>
+<tr data-st="wf"><td class="id">2-R</td><td class="nm" style="padding-left:40px">└ 予約フォーム：入力</td><td class="url"><code>/plan/reserve/</code></td><td class="c">04</td><td>固定ページ＋フォーム</td><td><code>page-reserve.php</code></td><td><code>plan/reserve/index.html</code></td><td class="src">/reserve_taxi/（日本語＋4言語）・/taxi/n142/（7社の問い合わせ）</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">プラン詳細から ?plan=a-2 で来るとコース・発着地を自動入力。7社の問い合わせフォームもここに統合。項目名は英語併記（旧4言語フォームもここへ転送）</td></tr>
+<tr data-st="new"><td class="id">2-R-1</td><td class="nm" style="padding-left:56px">└ 予約フォーム：確認</td><td class="url"><code>/plan/reserve/confirm/</code></td><td class="c">04</td><td>固定ページ（子）</td><td><code>page-reserve.php（ステップ2）</code></td><td><code></code></td><td class="src"></td><td><span class="st st-new">WF未作成</span></td><td class="note">確定。フォームの確認画面。noindex</td></tr>
+<tr data-st="new"><td class="id">2-R-2</td><td class="nm" style="padding-left:56px">└ 予約フォーム：送信完了</td><td class="url"><code>/plan/reserve/thanks/</code></td><td class="c">04</td><td>固定ページ（子）</td><td><code>page-reserve.php（ステップ3）</code></td><td><code></code></td><td class="src"></td><td><span class="st st-new">WF未作成</span></td><td class="note">確定。選んだ会社の電話番号と、物語・エリアへの導線。この画面の表示回数で予約リクエスト数を計測。noindex</td></tr>
+<tr data-st="done"><td class="id">2-mood</td><td class="nm" style="padding-left:40px">└ 検索結果：気分で絞り込み（7）</td><td class="url"><code>/plan/?mood=｛気分｝</code></td><td class="c">02</td><td>（プラン一覧と同じ）</td><td><code>archive-plan.php</code></td><td><code>plan/index.html?mood=zekkei</code></td><td class="src">/onsen/・/12/・/cycling/（素材は特集記事へ）</td><td><span class="st st-done">静的HTML済</span></td><td class="note">zekkei 絶景／gourmet グルメ／onsen 温泉／tozan 登山／drive ドライブ／family 家族旅／rain 雨の日。専用ページは作らない。タクソノミー mood は一覧ページを持たない（public だが rewrite・archive なし）</td></tr>
+<tr data-st="done"><td class="id">2-season</td><td class="nm" style="padding-left:40px">└ 検索結果：季節で絞り込み（4）</td><td class="url"><code>/plan/?season=｛季節｝</code></td><td class="c">02</td><td>（プラン一覧と同じ）</td><td><code>archive-plan.php</code></td><td><code>plan/index.html?season=autumn</code></td><td class="src">/autumnleaves_movie/・/13/・/topics/c121/（素材は特集記事へ）</td><td><span class="st st-done">静的HTML済</span></td><td class="note">spring 春／summer 夏／autumn 秋／winter 冬。専用ページは作らない。冬は運休プランを「冬季運休」バッジ付きで後ろに</td></tr>
+<tr data-st="done"><td class="id">2-theme</td><td class="nm" style="padding-left:40px">└ 検索結果：テーマで絞り込み（5）</td><td class="url"><code>/plan/?theme=｛軸｝</code></td><td class="c">02</td><td>（プラン一覧と同じ）</td><td><code>archive-plan.php</code></td><td><code>plan/index.html?theme=katana</code></td><td class="src">/tatara/・/topics/sake_poroject_x/・/rekishi/（素材は特集記事へ）</td><td><span class="st st-done">静的HTML済</span></td><td class="note">mizu 水／hakko 発酵／shinwa 神話／katana 刀／umi 海。値はつながりの軸（axis）のスラッグと同じで、テーマ専用の投稿タイプは作らない（森 mori はプランなし）</td></tr>
+<tr class="grp-row" id="g-2"><th colspan="10">知る・出会う</th></tr>
+<tr data-st="wf"><td class="id">3</td><td class="nm" style="padding-left:24px">物語（一覧）</td><td class="url"><code>/stories/</code></td><td class="c">05</td><td>アーカイブ（CPT: story）</td><td><code>archive-story.php</code></td><td><code>stories/index.html</code></td><td class="src">/rekishi/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">5つの物語を水の流れの順（森→信仰→鉄→水→海）で</td></tr>
+<tr data-st="wf"><td class="id">3-forest</td><td class="nm" style="padding-left:40px">└ 森の物語</td><td class="url"><code>/stories/forest/</code></td><td class="c">06</td><td>詳細（CPT: story）</td><td><code>single-story.php</code></td><td><code></code></td><td class="src">/12/9/（一木一石運動）</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">軸「森」。素材なし。新規取材</td></tr>
+<tr data-st="wf"><td class="id">3-faith</td><td class="nm" style="padding-left:40px">└ 信仰の物語</td><td class="url"><code>/stories/faith/</code></td><td class="c">06</td><td>詳細（CPT: story）</td><td><code>single-story.php</code></td><td><code></code></td><td class="src">/rekishi/1/・/tatara/daisen1300/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">軸「神話」。</td></tr>
+<tr data-st="wf"><td class="id">3-iron</td><td class="nm" style="padding-left:40px">└ 鉄の物語</td><td class="url"><code>/stories/iron/</code></td><td class="c">06</td><td>詳細（CPT: story）</td><td><code>single-story.php</code></td><td><code>stories/iron/index.html（代表）</code></td><td class="src">/rekishi/2/・/tatara/seitetsu/・/tatara/yasutsuna/・/tatara/nihontou/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">軸「刀」。再編集のみで成立</td></tr>
+<tr data-st="wf"><td class="id">3-water</td><td class="nm" style="padding-left:40px">└ 水の物語</td><td class="url"><code>/stories/water/</code></td><td class="c">06</td><td>詳細（CPT: story）</td><td><code>single-story.php</code></td><td><code></code></td><td class="src">/rekishi/3/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">軸「水」。リード特集</td></tr>
+<tr data-st="wf"><td class="id">3-sea</td><td class="nm" style="padding-left:40px">└ 海の物語</td><td class="url"><code>/stories/sea/</code></td><td class="c">06</td><td>詳細（CPT: story）</td><td><code>single-story.php</code></td><td><code></code></td><td class="src">—</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">軸「海」。素材なし。新規取材</td></tr>
+<tr data-st="wf"><td class="id">4</td><td class="nm" style="padding-left:24px">地域の人（一覧）</td><td class="url"><code>/people/</code></td><td class="c">07</td><td>アーカイブ（CPT: person）</td><td><code>archive-person.php</code></td><td><code>people/index.html</code></td><td class="src">/topics/sake_poroject_x/invest/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">職種・エリアで絞り込み</td></tr>
+<tr data-st="wf"><td class="id">4-brewer</td><td class="nm" style="padding-left:40px">└ 地域の人：酒蔵（蔵人）</td><td class="url"><code>/people/brewer-01/</code></td><td class="c">08</td><td>詳細（CPT: person）</td><td><code>single-person.php</code></td><td><code>people/brewer-01/index.html（代表）</code></td><td class="src">/topics/sake_poroject_x/invest/gamba/・suirai/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">職種＋通し番号。氏名は出さない場合あり（表示名で入力）。人物と一言は取材後</td></tr>
+<tr data-st="wf"><td class="id">4-fisher</td><td class="nm" style="padding-left:40px">└ 地域の人：漁師</td><td class="url"><code>/people/fisher-01/</code></td><td class="c">08</td><td>詳細（CPT: person）</td><td><code>single-person.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">職種＋通し番号。氏名は出さない場合あり（表示名で入力）。人物と一言は取材後</td></tr>
+<tr data-st="wf"><td class="id">4-craft</td><td class="nm" style="padding-left:40px">└ 地域の人：職人</td><td class="url"><code>/people/craft-01/</code></td><td class="c">08</td><td>詳細（CPT: person）</td><td><code>single-person.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">職種＋通し番号。氏名は出さない場合あり（表示名で入力）。人物と一言は取材後</td></tr>
+<tr data-st="wf"><td class="id">4-priest</td><td class="nm" style="padding-left:40px">└ 地域の人：神職</td><td class="url"><code>/people/priest-01/</code></td><td class="c">08</td><td>詳細（CPT: person）</td><td><code>single-person.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">職種＋通し番号。氏名は出さない場合あり（表示名で入力）。人物と一言は取材後</td></tr>
+<tr data-st="wf"><td class="id">4-guide</td><td class="nm" style="padding-left:40px">└ 地域の人：ガイド</td><td class="url"><code>/people/guide-01/</code></td><td class="c">08</td><td>詳細（CPT: person）</td><td><code>single-person.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">職種＋通し番号。氏名は出さない場合あり（表示名で入力）。人物と一言は取材後</td></tr>
+<tr class="grp-row" id="g-3"><th colspan="10">エリア</th></tr>
+<tr data-st="wf"><td class="id">5</td><td class="nm" style="padding-left:24px">エリア紹介（一覧）</td><td class="url"><code>/area/</code></td><td class="c">09</td><td>固定ページ（タクソノミー area の一覧）</td><td><code>page-area.php</code></td><td><code>area/index.html</code></td><td class="src">—</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">山・川・海のグループで10市町村</td></tr>
+<tr data-st="wf"><td class="id">5-yonago</td><td class="nm" style="padding-left:40px">└ 米子市</td><td class="url"><code>/area/yonago/</code></td><td class="c">10</td><td>タクソノミー（area）</td><td><code>taxonomy-area.php</code></td><td><code></code></td><td class="src">/tatara/yonago/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">5-sakaiminato</td><td class="nm" style="padding-left:40px">└ 境港市</td><td class="url"><code>/area/sakaiminato/</code></td><td class="c">10</td><td>タクソノミー（area）</td><td><code>taxonomy-area.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">素材が少ない（新規執筆）</td></tr>
+<tr data-st="wf"><td class="id">5-hiezu</td><td class="nm" style="padding-left:40px">└ 日吉津村</td><td class="url"><code>/area/hiezu/</code></td><td class="c">10</td><td>タクソノミー（area）</td><td><code>taxonomy-area.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">素材が少ない（新規執筆）</td></tr>
+<tr data-st="wf"><td class="id">5-daisen</td><td class="nm" style="padding-left:40px">└ 大山町</td><td class="url"><code>/area/daisen/</code></td><td class="c">10</td><td>タクソノミー（area）</td><td><code>taxonomy-area.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">素材が少ない（新規執筆）</td></tr>
+<tr data-st="wf"><td class="id">5-hoki</td><td class="nm" style="padding-left:40px">└ 伯耆町</td><td class="url"><code>/area/hoki/</code></td><td class="c">10</td><td>タクソノミー（area）</td><td><code>taxonomy-area.php</code></td><td><code></code></td><td class="src">/tatara/houki/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">5-nanbu</td><td class="nm" style="padding-left:40px">└ 南部町</td><td class="url"><code>/area/nanbu/</code></td><td class="c">10</td><td>タクソノミー（area）</td><td><code>taxonomy-area.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">素材が少ない（新規執筆）</td></tr>
+<tr data-st="wf"><td class="id">5-kofu</td><td class="nm" style="padding-left:40px">└ 江府町</td><td class="url"><code>/area/kofu/</code></td><td class="c">10</td><td>タクソノミー（area）</td><td><code>taxonomy-area.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">素材が少ない（新規執筆）</td></tr>
+<tr data-st="wf"><td class="id">5-hino</td><td class="nm" style="padding-left:40px">└ 日野町</td><td class="url"><code>/area/hino/</code></td><td class="c">10</td><td>タクソノミー（area）</td><td><code>taxonomy-area.php</code></td><td><code>area/hino/index.html（代表）</code></td><td class="src">/tatara/hino/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">5-nichinan</td><td class="nm" style="padding-left:40px">└ 日南町</td><td class="url"><code>/area/nichinan/</code></td><td class="c">10</td><td>タクソノミー（area）</td><td><code>taxonomy-area.php</code></td><td><code></code></td><td class="src">/tatara/nichinan/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">5-kurayoshi</td><td class="nm" style="padding-left:40px">└ 倉吉市</td><td class="url"><code>/area/kurayoshi/</code></td><td class="c">10</td><td>タクソノミー（area）</td><td><code>taxonomy-area.php</code></td><td><code></code></td><td class="src">/tatara/kurayoshi/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr class="grp-row" id="g-4"><th colspan="10">読みもの・お知らせ</th></tr>
+<tr data-st="wf"><td class="id">6</td><td class="nm" style="padding-left:24px">ジャーナル（一覧）</td><td class="url"><code>/journal/</code></td><td class="c">11</td><td>アーカイブ（投稿 post）</td><td><code>home.php</code></td><td><code>journal/index.html</code></td><td class="src">/special_feature/・/5/・/cycling/・/4/1/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">?axis= でつながりの軸を絞り込み</td></tr>
+<tr data-st="wf"><td class="id">6-feature</td><td class="nm" style="padding-left:40px">└ 記事の種類：特集</td><td class="url"><code>/journal/type/feature/</code></td><td class="c">11</td><td>カテゴリ（post）</td><td><code>category.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">一覧と同じテンプレート</td></tr>
+<tr data-st="wf"><td class="id">6-column</td><td class="nm" style="padding-left:40px">└ 記事の種類：コラム</td><td class="url"><code>/journal/type/column/</code></td><td class="c">11</td><td>カテゴリ（post）</td><td><code>category.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">一覧と同じテンプレート</td></tr>
+<tr data-st="wf"><td class="id">6-interview</td><td class="nm" style="padding-left:40px">└ 記事の種類：インタビュー</td><td class="url"><code>/journal/type/interview/</code></td><td class="c">11</td><td>カテゴリ（post）</td><td><code>category.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">一覧と同じテンプレート</td></tr>
+<tr data-st="wf"><td class="id">6-movie</td><td class="nm" style="padding-left:40px">└ 記事の種類：動画</td><td class="url"><code>/journal/type/movie/</code></td><td class="c">11</td><td>カテゴリ（post）</td><td><code>category.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">一覧と同じテンプレート</td></tr>
+<tr data-st="wf"><td class="id">6-f</td><td class="nm" style="padding-left:40px">└ 特集記事（気分・季節・テーマ） <span class="tcount">順次</span></td><td class="url"><code>/journal/｛特集スラッグ｝/</code></td><td class="c">11</td><td>詳細（投稿 post・種類「特集」）</td><td><code>single.php</code></td><td><code>journal/katana/index.html（代表）</code></td><td class="src">/tatara/・/topics/sake_poroject_x/・/onsen/・/12/・/autumnleaves_movie/・/13/・/rekishi/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">スラッグ案：katana 刀をめぐる旅／hakko 発酵をめぐる旅／mizu 水をめぐる旅／shinwa 神話をめぐる旅／umi 海をめぐる旅／onsen 温泉／autumn-leaves 大山の紅葉／winter-daisen 冬の大山 ほか順次。気分・季節・軸のタグ＋「検索結果に出す」で、同じ条件のプラン検索結果の上に導入を表示。モデルコース・動画・プランへの導線を持てる</td></tr>
+<tr data-st="wf"><td class="id">6-d</td><td class="nm" style="padding-left:40px">└ ジャーナル記事 <span class="tcount">随時</span></td><td class="url"><code>/journal/｛記事スラッグ｝/</code></td><td class="c">11</td><td>詳細（投稿 post）</td><td><code>single.php</code></td><td><code>journal/sample/index.html（代表）</code></td><td class="src">/blognews/y839-copy-2/・/cycling/・/4/1/ ほか</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">移行 約5本＋運用で追加</td></tr>
+<tr data-st="wf"><td class="id">7</td><td class="nm" style="padding-left:24px">イベント（一覧）</td><td class="url"><code>/event/</code></td><td class="c">12</td><td>アーカイブ（CPT: event）</td><td><code>archive-event.php</code></td><td><code>event/index.html</code></td><td class="src">/blognews/（イベント告知）</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">開催中・これから・終了で切り替え</td></tr>
+<tr data-st="wf"><td class="id">7-d</td><td class="nm" style="padding-left:40px">└ イベント詳細 <span class="tcount">随時</span></td><td class="url"><code>/event/｛スラッグ｝/</code></td><td class="c">12</td><td>詳細（CPT: event）</td><td><code>single-event.php</code></td><td><code>event/sample/index.html（代表）</code></td><td class="src">/blognews/y149/ ほか</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">外部サイトのイベントは外部リンクとして登録できる</td></tr>
+<tr data-st="wf"><td class="id">8</td><td class="nm" style="padding-left:24px">お知らせ（一覧）</td><td class="url"><code>/news/</code></td><td class="c">13</td><td>アーカイブ（CPT: news）</td><td><code>archive-news.php</code></td><td><code>news/index.html</code></td><td class="src">/blognews/・/topics/・/important_info/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">旧3種類のお知らせを統合</td></tr>
+<tr data-st="wf"><td class="id">8-info</td><td class="nm" style="padding-left:40px">└ お知らせの種類：お知らせ</td><td class="url"><code>/news/category/info/</code></td><td class="c">13</td><td>タクソノミー（news_cat）</td><td><code>taxonomy-news_cat.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">一覧と同じテンプレート</td></tr>
+<tr data-st="wf"><td class="id">8-media</td><td class="nm" style="padding-left:40px">└ お知らせの種類：メディア掲載</td><td class="url"><code>/news/category/media/</code></td><td class="c">13</td><td>タクソノミー（news_cat）</td><td><code>taxonomy-news_cat.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">一覧と同じテンプレート</td></tr>
+<tr data-st="wf"><td class="id">8-business</td><td class="nm" style="padding-left:40px">└ お知らせの種類：事業者向け</td><td class="url"><code>/news/category/business/</code></td><td class="c">13</td><td>タクソノミー（news_cat）</td><td><code>taxonomy-news_cat.php</code></td><td><code></code></td><td class="src">/topics/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">一覧と同じテンプレート</td></tr>
+<tr data-st="wf"><td class="id">8-important</td><td class="nm" style="padding-left:40px">└ お知らせの種類：重要</td><td class="url"><code>/news/category/important/</code></td><td class="c">13</td><td>タクソノミー（news_cat）</td><td><code>taxonomy-news_cat.php</code></td><td><code></code></td><td class="src">/important_info/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">一覧と同じテンプレート</td></tr>
+<tr data-st="wf"><td class="id">8-d</td><td class="nm" style="padding-left:40px">└ お知らせ詳細 <span class="tcount">随時</span></td><td class="url"><code>/news/｛スラッグ｝/</code></td><td class="c">13</td><td>詳細（CPT: news）</td><td><code>single-news.php</code></td><td><code>news/sample/index.html（代表）</code></td><td class="src">/blognews/a117/・/topics/g648/ ほか</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr class="grp-row" id="g-5"><th colspan="10">ガイド・サイト情報</th></tr>
+<tr data-st="wf"><td class="id">9</td><td class="nm" style="padding-left:24px">アクセス</td><td class="url"><code>/access/</code></td><td class="c">14</td><td>固定ページ</td><td><code>page-access.php</code></td><td><code>access/index.html</code></td><td class="src">/18/（5ページ）・/13/2/・/13/3/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">飛行機・JR・高速バス・車をタブで（SPはアコーディオン）。冬の通行止め情報</td></tr>
+<tr data-st="new"><td class="id">10</td><td class="nm" style="padding-left:24px">登山ガイド</td><td class="url"><code>/guide/tozan/</code></td><td class="c">15</td><td>固定ページ</td><td><code>page.php（読み物の汎用）</code></td><td><code></code></td><td class="src">/12/1〜5・/12/11・/12/13（7ページ）</td><td><span class="st st-new">WF未作成</span></td><td class="note">確定。旧 /12/ の安全情報7ページを集約。WFは未作成（汎用の読み物テンプレートで組める）</td></tr>
+<tr data-st="wf"><td class="id">11</td><td class="nm" style="padding-left:24px">当サイトについて</td><td class="url"><code>/about-site/</code></td><td class="c">15</td><td>固定ページ</td><td><code>page.php</code></td><td><code>about-site/index.html</code></td><td class="src">/policy/（前半）</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">フッターのリンク先</td></tr>
+<tr data-st="wf"><td class="id">12</td><td class="nm" style="padding-left:24px">プライバシーポリシー</td><td class="url"><code>/policy/</code></td><td class="c">15</td><td>固定ページ</td><td><code>page.php</code></td><td><code></code></td><td class="src">/policy/（後半）</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">旧 /policy/ は「当サイトについて」と1ページだった。URLは据え置き</td></tr>
+<tr data-st="wf"><td class="id">13</td><td class="nm" style="padding-left:24px">各観光エリアのお問い合わせ</td><td class="url"><code>/contact_kanko/</code></td><td class="c">15</td><td>固定ページ</td><td><code>page.php</code></td><td><code></code></td><td class="src">/contact_kanko/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">URLは据え置き（外部からのリンクが多い想定）。エリア詳細の下部にも同じデータを表示</td></tr>
+<tr data-st="wf"><td class="id">14</td><td class="nm" style="padding-left:24px">山陰観光リンク</td><td class="url"><code>/links/</code></td><td class="c">15</td><td>固定ページ</td><td><code>page.php</code></td><td><code></code></td><td class="src">/30/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">15</td><td class="nm" style="padding-left:24px">写真データ・レンタル</td><td class="url"><code>/photo/</code></td><td class="c">15</td><td>固定ページ</td><td><code>page.php</code></td><td><code></code></td><td class="src">/25/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="wf"><td class="id">15c</td><td class="nm" style="padding-left:24px">Language ／ 外国の方へ</td><td class="url"><code>/other-languages/</code></td><td class="c">15</td><td>固定ページ</td><td><code>page.php</code></td><td><code></code></td><td class="src">/other-languages/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">URL据え置き。4言語の短い案内：デジタルカタログ、予約フォームの使い方（項目は英語併記）、タクシー会社の電話番号、ブラウザの翻訳機能。外国語版のサイトは作らない</td></tr>
+<tr data-st="wf"><td class="id">15b</td><td class="nm" style="padding-left:24px">デジタルカタログ（観光ガイドブック 4言語）</td><td class="url"><code>/digitalcatalog/</code></td><td class="c">15</td><td>固定ページ</td><td><code>page.php</code></td><td><code></code></td><td class="src">/digitalcatalog/・/system/digitalcatalog/（ビューア）</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">URL据え置き。ビューア本体はWPとは別のファイルとして残す。フッターからリンク。冊子が最新かは協議会に確認</td></tr>
+<tr data-st="wf"><td class="id">16</td><td class="nm" style="padding-left:24px">お問い合わせ：入力</td><td class="url"><code>/contact/</code></td><td class="c">15</td><td>固定ページ＋フォーム</td><td><code>page-contact.php</code></td><td><code>contact/index.html</code></td><td class="src">/contact/</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note"></td></tr>
+<tr data-st="new"><td class="id">16-1</td><td class="nm" style="padding-left:40px">└ お問い合わせ：確認</td><td class="url"><code>/contact/confirm/</code></td><td class="c">15</td><td>固定ページ（子）</td><td><code>page-contact.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-new">WF未作成</span></td><td class="note">noindex</td></tr>
+<tr data-st="new"><td class="id">16-2</td><td class="nm" style="padding-left:40px">└ お問い合わせ：送信完了</td><td class="url"><code>/contact/thanks/</code></td><td class="c">15</td><td>固定ページ（子）</td><td><code>page-contact.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-new">WF未作成</span></td><td class="note">noindex</td></tr>
+<tr class="grp-row" id="g-6"><th colspan="10">システム</th></tr>
+<tr data-st="wf"><td class="id">17</td><td class="nm" style="padding-left:24px">スポット詳細 <span class="tcount">約90</span></td><td class="url"><code>/spot/｛スラッグ｝/</code></td><td class="c">16</td><td>詳細（CPT: spot）</td><td><code>single-spot.php</code></td><td><code>spot/sample/index.html（代表）</code></td><td class="src">/onsen/1〜7・/tatara/各市町村・タクシー立ち寄り先</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">公開時は軽い詳細ページ：写真・説明・市町村・地図・公式サイト・このスポットを通るプラン・関連する特集と物語。住所・営業時間・料金・駐車場は欄だけ用意し、入力された項目だけ表示（情報確認日つき）。基本情報はこちらで公式サイトから調べて表にし、協議会に確認してもらう</td></tr>
+<tr data-st="new"><td class="id">18</td><td class="nm" style="padding-left:24px">404（ページが見つかりません）</td><td class="url"><code>—</code></td><td class="c">—</td><td>システム</td><td><code>404.php</code></td><td><code>404.html</code></td><td class="src"></td><td><span class="st st-new">WF未作成</span></td><td class="note">検索の代わりに主な入口（プラン・物語・エリア）を出す</td></tr>
+<tr data-st="new"><td class="id">19</td><td class="nm" style="padding-left:24px">XMLサイトマップ</td><td class="url"><code>/wp-sitemap.xml</code></td><td class="c">—</td><td>システム（WP標準）</td><td><code>—</code></td><td><code></code></td><td class="src">/sitemap/（HTML版）は廃止</td><td><span class="st st-new">WF未作成</span></td><td class="note">HTMLのサイトマップページは作らない。確認・完了画面と転送用のURLは除外</td></tr>
+</tbody></table></div>
+  </section>
+
+  <section id="redirect">
+    <div class="pagebar"><h2>旧URLからの転送（301）</h2><div class="meta">コンテンツ整理表「現サイト棚卸し」130件の移行先をURLにしたもの</div></div>
+    <div class="purpose"><b>使い方</b>　公開時にWPのリダイレクト設定（.htaccess またはプラグイン）へ登録する。<code>｛スラッグ｝</code>は移行記事のスラッグが決まったら埋める。廃止したページは、内容の近いページ（なければ一覧）へ転送する。現在も404のURLは転送しない。</div>
+    <div class="tbl-wrap" tabindex="0" role="region" aria-label="旧URLからの転送（横にスクロール）"><table class="t rd" id="rd"><thead><tr><th>No</th><th>旧URL</th><th>旧ページ</th><th>整理表の判定</th><th>新URL</th><th>転送</th></tr></thead><tbody>
+<tr><td class="c">1</td><td><code>/</code></td><td>鳥取・山陰・大山ワンダー</td><td>廃止（新デザイン）</td><td><code>/</code></td><td>—</td></tr>
+<tr><td class="c">2</td><td><code>/index2025/</code></td><td>旧トップ（2025版）</td><td>廃止</td><td><code>/</code></td><td>301</td></tr>
+<tr><td class="c">3</td><td><code>/important_info/</code></td><td>重要なお知らせ</td><td>統合</td><td><code>/news/category/important/</code></td><td>301</td></tr>
+<tr><td class="c">4</td><td><code>/important_info/u943/</code></td><td>大山観光のお問合せは大山町観光案内所まで</td><td>統合</td><td><code>/contact_kanko/</code></td><td>301</td></tr>
+<tr><td class="c">5</td><td><code>/blognews/</code></td><td>大山山麓を楽しむお知らせ（一覧）</td><td>再編集</td><td><code>/news/</code></td><td>301</td></tr>
+<tr><td class="c">6</td><td><code>/blognews/y149/</code></td><td>郷土のタカラ「弓浜絣」と「伯州綿」の魅力を知るイベント</td><td>移行（アーカイブ）</td><td><code>/event/｛スラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">7</td><td><code>/blognews/x313/</code></td><td>大山まきばみるくの里 リニューアル休業</td><td>廃止</td><td><code>/news/</code></td><td>301</td></tr>
+<tr><td class="c">8</td><td><code>/blognews/a117/</code></td><td>【メディア掲載】るるぶFREE山陰に特集掲載</td><td>移行</td><td><code>/news/｛スラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">9</td><td><code>/blognews/y839/</code></td><td>【本編公開】第1弾 伯耆安綱ゆかりの地をめぐる旅</td><td>再編集</td><td><code>/stories/iron/</code></td><td>301</td></tr>
+<tr><td class="c">10</td><td><code>/blognews/yokoku/</code></td><td>近日公開！語り 中村悠一さん</td><td>廃止</td><td><code>/stories/iron/</code></td><td>301</td></tr>
+<tr><td class="c">11</td><td><code>/blognews/y839-copy-2/</code></td><td>【本編公開】第2弾 時をつなぐ六つの景色</td><td>再編集</td><td><code>/journal/｛スラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">12</td><td><code>/blognews/yasutsunataxi/</code></td><td>「伯耆安綱ゆかりの地めぐりルート」が新登場</td><td>統合</td><td><code>/plan/a-2/</code></td><td>301</td></tr>
+<tr class="dim"><td class="c">13</td><td><code>/blognews/g108/</code></td><td>（404）</td><td>廃止</td><td><code>—</code></td><td>転送なし（現在も404）</td></tr>
+<tr class="dim"><td class="c">14</td><td><code>/blognews/2025tsunagaru/</code></td><td>（404）</td><td>廃止</td><td><code>—</code></td><td>転送なし（現在も404）</td></tr>
+<tr><td class="c">15</td><td><code>/topics/</code></td><td>ビジネス向けのお知らせ（一覧）</td><td>再編集</td><td><code>/news/category/business/</code></td><td>301</td></tr>
+<tr><td class="c">16</td><td><code>/topics/g648/</code></td><td>大山圏域酒蔵ツーリズム講演会開催のお知らせ</td><td>移行</td><td><code>/news/｛スラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">17</td><td><code>/topics/s173/</code></td><td>ブランディング推進業務委託プロポーザル</td><td>移行</td><td><code>/news/｛スラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">18</td><td><code>/topics/c121/</code></td><td>めざましテレビ 冬の絶景ランキングで大山が1位</td><td>再編集</td><td><code>/journal/winter-daisen/</code></td><td>301</td></tr>
+<tr class="dim"><td class="c">19</td><td><code>/topics/v222/</code></td><td>（404）</td><td>廃止</td><td><code>—</code></td><td>転送なし（現在も404）</td></tr>
+<tr class="dim"><td class="c">20</td><td><code>/topics/c126/</code></td><td>（404）</td><td>廃止</td><td><code>—</code></td><td>転送なし（現在も404）</td></tr>
+<tr><td class="c">21</td><td><code>/topics/sake_poroject_x/</code></td><td>DAISEN HAKKO PROJECT～大山圏域 酒蔵ツーリズム～</td><td>再編集</td><td><code>/journal/hakko/</code></td><td>301</td></tr>
+<tr><td class="c">22</td><td><code>/topics/sake_poroject_x/g169/</code></td><td>これまでの活動</td><td>移行（アーカイブ）</td><td><code>/news/｛スラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">23</td><td><code>/topics/sake_poroject_x/g169/rally/</code></td><td>酒蔵キーワードラリー</td><td>廃止</td><td><code>/journal/hakko/</code></td><td>301</td></tr>
+<tr><td class="c">24</td><td><code>/topics/sake_poroject_x/g169/rally/c928/</code></td><td>賞品詳細</td><td>廃止</td><td><code>/journal/hakko/</code></td><td>301</td></tr>
+<tr><td class="c">25</td><td><code>/topics/sake_poroject_x/p170/</code></td><td>酒蔵見学会＆勉強会</td><td>移行（アーカイブ）</td><td><code>/news/｛スラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">26</td><td><code>/topics/sake_poroject_x/s170/</code></td><td>事業説明会＆講演会を開催しました</td><td>移行（アーカイブ）</td><td><code>/news/｛スラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">27</td><td><code>/topics/sake_poroject_x/x123/</code></td><td>事業説明会＆講演会 実施概要</td><td>統合</td><td><code>/news/｛s170の移行先｝/</code></td><td>301</td></tr>
+<tr><td class="c">28</td><td><code>/topics/sake_poroject_x/survey_1/</code></td><td>飲食店へのお酒に関するアンケート</td><td>廃止</td><td><code>/journal/hakko/</code></td><td>301</td></tr>
+<tr><td class="c">29</td><td><code>/topics/sake_poroject_x/invest/</code></td><td>有識者によるモニタープログラム</td><td>再編集</td><td><code>/people/</code></td><td>301</td></tr>
+<tr><td class="c">30</td><td><code>/topics/sake_poroject_x/invest/gamba/</code></td><td>《久米桜ブルワリー》モニタープログラム</td><td>再編集</td><td><code>/people/brewer-01/</code></td><td>301</td></tr>
+<tr><td class="c">31</td><td><code>/topics/sake_poroject_x/invest/suirai/</code></td><td>《稲田本店》モニタープログラム</td><td>再編集</td><td><code>/people/brewer-02/</code></td><td>301</td></tr>
+<tr><td class="c">32</td><td><code>/topics/sake_poroject_x/invest/iwaizumi/</code></td><td>《大岩酒造本店》モニタープログラム</td><td>再編集</td><td><code>/journal/hakko/</code></td><td>301</td></tr>
+<tr><td class="c">33</td><td><code>/topics/sake_poroject_x/invest/tiyom/</code></td><td>《千代むすび酒造》モニタープログラム</td><td>再編集</td><td><code>/journal/hakko/</code></td><td>301</td></tr>
+<tr><td class="c">34</td><td><code>/taxi/</code></td><td>大山山麓ぐる〜んと観光タクシー旅（トップ）</td><td>再編集</td><td><code>/plan/</code></td><td>301</td></tr>
+<tr><td class="c">35</td><td><code>/taxi/n142/</code></td><td>お問い合わせ一覧（タクシー会社7社）</td><td>再編集</td><td><code>/plan/reserve/</code></td><td>301</td></tr>
+<tr><td class="c">36</td><td><code>/taxi/n142/a233/</code></td><td>皆生タクシーへのお問合せ</td><td>統合</td><td><code>/plan/reserve/</code></td><td>301</td></tr>
+<tr><td class="c">37</td><td><code>/taxi/n142/s155/</code></td><td>日本交通米子営業所へのお問合せ</td><td>統合</td><td><code>/plan/reserve/</code></td><td>301</td></tr>
+<tr><td class="c">38</td><td><code>/taxi/n142/m116/</code></td><td>日ノ丸ハイヤー米子営業所へのお問合せ</td><td>統合</td><td><code>/plan/reserve/</code></td><td>301</td></tr>
+<tr><td class="c">39</td><td><code>/taxi/n142/g103/</code></td><td>米子第一交通へのお問合せ</td><td>統合</td><td><code>/plan/reserve/</code></td><td>301</td></tr>
+<tr><td class="c">40</td><td><code>/taxi/n142/a160/</code></td><td>日本交通境港営業所へのお問合せ</td><td>統合</td><td><code>/plan/reserve/</code></td><td>301</td></tr>
+<tr><td class="c">41</td><td><code>/taxi/n142/r234/</code></td><td>港タクシーへのお問合せ</td><td>統合</td><td><code>/plan/reserve/</code></td><td>301</td></tr>
+<tr><td class="c">42</td><td><code>/taxi/n142/s773/</code></td><td>日ノ丸ハイヤー境港営業所へのお問合せ</td><td>統合</td><td><code>/plan/reserve/</code></td><td>301</td></tr>
+<tr><td class="c">43</td><td><code>/reserve_taxi/</code></td><td>タクシー予約フォーム</td><td>再編集</td><td><code>/plan/reserve/</code></td><td>301</td></tr>
+<tr><td class="c">44</td><td><code>/reserve_taxi/en/</code></td><td>Taxi Reservation Form</td><td>統合</td><td><code>/plan/reserve/</code></td><td>301（項目は英語併記）</td></tr>
+<tr><td class="c">45</td><td><code>/reserve_taxi/zh-hant/</code></td><td>計程車預約格式</td><td>統合</td><td><code>/plan/reserve/</code></td><td>301（項目は英語併記）</td></tr>
+<tr><td class="c">46</td><td><code>/reserve_taxi/zh-hans/</code></td><td>出租车预订页面</td><td>統合</td><td><code>/plan/reserve/</code></td><td>301（項目は英語併記）</td></tr>
+<tr><td class="c">47</td><td><code>/reserve_taxi/ko/</code></td><td>택시 온라인 예약</td><td>統合</td><td><code>/plan/reserve/</code></td><td>301（項目は英語併記）</td></tr>
+<tr><td class="c">48</td><td><code>/digitalcatalog/</code></td><td>デジタルカタログ</td><td>移行</td><td><code>/digitalcatalog/</code></td><td>—（据え置き。/system/digitalcatalog/ も残す）</td></tr>
+<tr><td class="c">49</td><td><code>/5/</code></td><td>大山ワンダームービー</td><td>再編集</td><td><code>/journal/type/movie/</code></td><td>301</td></tr>
+<tr><td class="c">50</td><td><code>/autumnleaves_movie/</code></td><td>動画で見る 日野郡紅葉情報</td><td>統合</td><td><code>/journal/autumn-leaves/</code></td><td>301</td></tr>
+<tr><td class="c">51</td><td><code>/cycling/</code></td><td>動画で見る それゆけ！大山山麓サイクリング</td><td>再編集</td><td><code>/journal/｛スラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">52</td><td><code>/special_feature/</code></td><td>特集記事（一覧）</td><td>廃止</td><td><code>/journal/</code></td><td>301</td></tr>
+<tr><td class="c">53</td><td><code>/rekishi/</code></td><td>歴史を知る（3つのキーワード 神・鉄・水）</td><td>再編集</td><td><code>/stories/</code></td><td>301</td></tr>
+<tr><td class="c">54</td><td><code>/rekishi/1/</code></td><td>[神]のプロローグ</td><td>再編集</td><td><code>/stories/faith/</code></td><td>301</td></tr>
+<tr><td class="c">55</td><td><code>/rekishi/2/</code></td><td>[鉄]のプロローグ</td><td>再編集</td><td><code>/stories/iron/</code></td><td>301</td></tr>
+<tr><td class="c">56</td><td><code>/rekishi/3/</code></td><td>[水]のプロローグ</td><td>再編集</td><td><code>/stories/water/</code></td><td>301</td></tr>
+<tr><td class="c">57</td><td><code>/onsen/</code></td><td>海・山、どちらの名湯を楽しむ？</td><td>再編集</td><td><code>/journal/onsen/</code></td><td>301</td></tr>
+<tr><td class="c">58</td><td><code>/onsen/1/</code></td><td>皆生温泉</td><td>再編集</td><td><code>/spot/｛温泉のスラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">59</td><td><code>/onsen/2/</code></td><td>大山ロイヤルホテル（大山温泉）</td><td>再編集</td><td><code>/spot/｛温泉のスラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">60</td><td><code>/onsen/3/</code></td><td>大山レークホテル（大山伽羅温泉）</td><td>再編集</td><td><code>/spot/｛温泉のスラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">61</td><td><code>/onsen/4/</code></td><td>淀江ゆめ温泉</td><td>再編集</td><td><code>/spot/｛温泉のスラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">62</td><td><code>/onsen/5/</code></td><td>沸くわく天然温泉 ラピスパ</td><td>再編集</td><td><code>/spot/｛温泉のスラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">63</td><td><code>/onsen/6/</code></td><td>中山温泉 ゆーゆー倶楽部NASPAL</td><td>再編集</td><td><code>/spot/｛温泉のスラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">64</td><td><code>/onsen/7/</code></td><td>岸本温泉 ゆうあい・パル</td><td>再編集</td><td><code>/spot/｛温泉のスラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">65</td><td><code>/12/</code></td><td>登山を楽しもう</td><td>再編集</td><td><code>/guide/tozan/</code></td><td>301</td></tr>
+<tr><td class="c">66</td><td><code>/12/1/</code></td><td>大山の気候</td><td>統合</td><td><code>/guide/tozan/</code></td><td>301</td></tr>
+<tr><td class="c">67</td><td><code>/12/2/</code></td><td>登山の心得</td><td>統合</td><td><code>/guide/tozan/</code></td><td>301</td></tr>
+<tr><td class="c">68</td><td><code>/12/3/</code></td><td>夏山登山の服装</td><td>統合</td><td><code>/guide/tozan/</code></td><td>301</td></tr>
+<tr><td class="c">69</td><td><code>/12/4/</code></td><td>初心者におすすめの登山ルート</td><td>統合</td><td><code>/guide/tozan/</code></td><td>301</td></tr>
+<tr><td class="c">70</td><td><code>/12/5/</code></td><td>大山登山の危険</td><td>統合</td><td><code>/guide/tozan/</code></td><td>301</td></tr>
+<tr><td class="c">71</td><td><code>/12/9/</code></td><td>大山を守れ！一木一石運動</td><td>再編集</td><td><code>/stories/forest/</code></td><td>301</td></tr>
+<tr><td class="c">72</td><td><code>/12/11/</code></td><td>山小屋情報</td><td>統合</td><td><code>/guide/tozan/</code></td><td>301</td></tr>
+<tr><td class="c">73</td><td><code>/12/13/</code></td><td>装備・これだけあれば大丈夫！</td><td>統合</td><td><code>/guide/tozan/</code></td><td>301</td></tr>
+<tr><td class="c">74</td><td><code>/4/1/</code></td><td>I LOVE 大山登山</td><td>再編集</td><td><code>/journal/｛スラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">75</td><td><code>/13/</code></td><td>スキーを楽しもう！</td><td>再編集</td><td><code>/journal/winter-daisen/</code></td><td>301</td></tr>
+<tr><td class="c">76</td><td><code>/13/01/</code></td><td>だいせんホワイトリゾート シャトルバス情報</td><td>統合</td><td><code>/journal/winter-daisen/</code></td><td>301</td></tr>
+<tr><td class="c">77</td><td><code>/13/2/</code></td><td>スキー場への交通と冬期通行止情報</td><td>統合</td><td><code>/access/</code></td><td>301</td></tr>
+<tr><td class="c">78</td><td><code>/13/3/</code></td><td>だいせんホワイトリゾート 駐車場情報</td><td>統合</td><td><code>/access/</code></td><td>301</td></tr>
+<tr><td class="c">79</td><td><code>/tatara/</code></td><td>童子切・伯耆安綱ゆかりの地・刀剣・たたら文化</td><td>再編集</td><td><code>/journal/katana/</code></td><td>301</td></tr>
+<tr><td class="c">80</td><td><code>/tatara/yasutsuna/</code></td><td>伯耆国と童子切安綱</td><td>再編集</td><td><code>/stories/iron/</code></td><td>301</td></tr>
+<tr><td class="c">81</td><td><code>/tatara/seitetsu/</code></td><td>奥日野のたたら製鉄</td><td>再編集</td><td><code>/stories/iron/</code></td><td>301</td></tr>
+<tr><td class="c">82</td><td><code>/tatara/gaiyo/</code></td><td>たたら製鉄の流れ[概要]</td><td>統合</td><td><code>/stories/iron/</code></td><td>301</td></tr>
+<tr><td class="c">83</td><td><code>/tatara/nihontou/</code></td><td>日本刀制作の工程</td><td>統合</td><td><code>/stories/iron/</code></td><td>301</td></tr>
+<tr><td class="c">84</td><td><code>/tatara/daisen1300/</code></td><td>大山開山1300年祭と春日大社の古伯耆物</td><td>再編集</td><td><code>/stories/faith/</code></td><td>301</td></tr>
+<tr><td class="c">85</td><td><code>/tatara/yonago/</code></td><td>米子市（刀剣たたらスポット）</td><td>再編集</td><td><code>/area/yonago/</code></td><td>301</td></tr>
+<tr><td class="c">86</td><td><code>/tatara/houki/</code></td><td>伯耆町（刀剣たたらスポット）</td><td>再編集</td><td><code>/area/hoki/</code></td><td>301</td></tr>
+<tr><td class="c">87</td><td><code>/tatara/hino/</code></td><td>日野町（刀剣たたらスポット）</td><td>再編集</td><td><code>/area/hino/</code></td><td>301</td></tr>
+<tr><td class="c">88</td><td><code>/tatara/nichinan/</code></td><td>日南町（刀剣たたらスポット）</td><td>再編集</td><td><code>/area/nichinan/</code></td><td>301</td></tr>
+<tr><td class="c">89</td><td><code>/tatara/kurayoshi/</code></td><td>倉吉市（刀剣たたらスポット）</td><td>再編集</td><td><code>/area/kurayoshi/</code></td><td>301</td></tr>
+<tr><td class="c">90</td><td><code>/18/</code></td><td>アクセス</td><td>再編集</td><td><code>/access/</code></td><td>301</td></tr>
+<tr><td class="c">91</td><td><code>/18/01/</code></td><td>マイカーを利用する場合</td><td>統合</td><td><code>/access/</code></td><td>301</td></tr>
+<tr><td class="c">92</td><td><code>/18/3/</code></td><td>JRを利用する場合</td><td>統合</td><td><code>/access/</code></td><td>301</td></tr>
+<tr><td class="c">93</td><td><code>/18/4/</code></td><td>高速バスを利用する場合</td><td>統合</td><td><code>/access/</code></td><td>301</td></tr>
+<tr><td class="c">94</td><td><code>/18/5/</code></td><td>飛行機を利用する場合</td><td>統合</td><td><code>/access/</code></td><td>301</td></tr>
+<tr><td class="c">95</td><td><code>/contact_kanko/</code></td><td>各観光エリアお問い合わせ先</td><td>移行</td><td><code>/contact_kanko/</code></td><td>—</td></tr>
+<tr><td class="c">96</td><td><code>/contact/</code></td><td>お問い合わせ</td><td>移行</td><td><code>/contact/</code></td><td>—</td></tr>
+<tr><td class="c">97</td><td><code>/policy/</code></td><td>当サイトについて・プライバシーポリシー</td><td>移行</td><td><code>/policy/</code></td><td>—（当サイトについては /about-site/ へ分離）</td></tr>
+<tr><td class="c">98</td><td><code>/policy/logo/</code></td><td>「DAISEN WONDER」ロゴに込めた意味</td><td>再編集</td><td><code>/about/</code></td><td>301</td></tr>
+<tr><td class="c">99</td><td><code>/25/</code></td><td>写真データ・レンタル</td><td>移行</td><td><code>/photo/</code></td><td>301</td></tr>
+<tr><td class="c">100</td><td><code>/30/</code></td><td>山陰観光リンク</td><td>移行</td><td><code>/links/</code></td><td>301</td></tr>
+<tr><td class="c">101</td><td><code>/other-languages/</code></td><td>外国語への対応</td><td>再編集</td><td><code>/other-languages/</code></td><td>—（据え置き。Language ページに作り直し）</td></tr>
+<tr><td class="c">102</td><td><code>/sitemap/</code></td><td>サイトマップ</td><td>廃止</td><td><code>/</code></td><td>301</td></tr>
+<tr><td class="c">103</td><td><code>/4/</code></td><td>おすすめ情報</td><td>廃止</td><td><code>/</code></td><td>301</td></tr>
+<tr><td class="c">104</td><td><code>/4/5/</code></td><td>使えば便利！旅のお得情報</td><td>廃止</td><td><code>/</code></td><td>301</td></tr>
+<tr><td class="c">105</td><td><code>/4/5/4/</code></td><td>五感でふれる 四季の自然体験ツアー</td><td>再編集</td><td><code>/plan/?filter=season</code></td><td>301</td></tr>
+<tr class="dim"><td class="c">106</td><td><code>/testtest/*（5件）</code></td><td>テストページ</td><td>廃止</td><td><code>—</code></td><td>410（削除）</td></tr>
+<tr><td class="c">107</td><td><code>/taxi/taxi_course/</code></td><td>A-1 絶景の城 米子城と城下町めぐり</td><td>再編集</td><td><code>/plan/a-1/</code></td><td>301</td></tr>
+<tr><td class="c">108</td><td><code>/taxi/s129/</code></td><td>A-2 童子切安綱を生んだ伯耆安綱ゆかりの地めぐり</td><td>再編集</td><td><code>/plan/a-2/</code></td><td>301</td></tr>
+<tr><td class="c">109</td><td><code>/taxi/q129/</code></td><td>A-3 開運祈願とたたらの歴史にふれる旅</td><td>再編集</td><td><code>/plan/a-3/</code></td><td>301</td></tr>
+<tr><td class="c">110</td><td><code>/taxi/y148/</code></td><td>A-4 太平記ゆかりの地をめぐる</td><td>再編集</td><td><code>/plan/a-4/</code></td><td>301</td></tr>
+<tr><td class="c">111</td><td><code>/taxi/v186/</code></td><td>A-5 小泉八雲とセツの足跡をたどる</td><td>再編集</td><td><code>/plan/a-5/</code></td><td>301</td></tr>
+<tr><td class="c">112</td><td><code>/taxi/u645/</code></td><td>B-1 ファミリーにおすすめ！大山ふれあいの旅</td><td>再編集</td><td><code>/plan/b-1/</code></td><td>301</td></tr>
+<tr><td class="c">113</td><td><code>/taxi/n100/</code></td><td>B-2 鋭い岩峰の大山北壁</td><td>再編集</td><td><code>/plan/b-2/</code></td><td>301</td></tr>
+<tr><td class="c">114</td><td><code>/taxi/s711/</code></td><td>B-3 端正な山容 大山西側 伯耆富士の大パノラマ</td><td>再編集</td><td><code>/plan/b-3/</code></td><td>301</td></tr>
+<tr><td class="c">115</td><td><code>/taxi/x603/</code></td><td>B-4 植田正治も愛した美しい鳥取</td><td>再編集</td><td><code>/plan/b-4/</code></td><td>301</td></tr>
+<tr><td class="c">116</td><td><code>/taxi/c225/</code></td><td>B-5 日本最大級のフラワーパークと人気のみるくの里</td><td>再編集</td><td><code>/plan/b-5/</code></td><td>301</td></tr>
+<tr><td class="c">117</td><td><code>/taxi/e163/</code></td><td>B-6 断崖絶壁 大山南壁 フォトジェニックな奥大山</td><td>再編集</td><td><code>/plan/b-6/</code></td><td>301</td></tr>
+<tr><td class="c">118</td><td><code>/taxi/e551/</code></td><td>C-1 境港満喫</td><td>再編集</td><td><code>/plan/c-1/</code></td><td>301</td></tr>
+<tr><td class="c">119</td><td><code>/taxi/p344/</code></td><td>C-2 さかなと鬼太郎のまち散策</td><td>再編集</td><td><code>/plan/c-2/</code></td><td>301</td></tr>
+<tr><td class="c">120</td><td><code>/taxi/m134/</code></td><td>C-3 革新と匠の技をめぐる</td><td>再編集</td><td><code>/plan/c-3/</code></td><td>301</td></tr>
+<tr><td class="c">121</td><td><code>/taxi/r926/</code></td><td>C-4 えびす様の総本宮</td><td>再編集</td><td><code>/plan/c-4/</code></td><td>301</td></tr>
+<tr><td class="c">122</td><td><code>/taxi/m714/</code></td><td>C-5 水木ワールドの原点と海のめぐみを感じる</td><td>再編集</td><td><code>/plan/c-5/</code></td><td>301</td></tr>
+<tr><td class="c">123</td><td><code>/taxi/z133/</code></td><td>D-1 大国主命ゆかりの再生神話と花の旅</td><td>再編集</td><td><code>/plan/d-1/</code></td><td>301</td></tr>
+<tr><td class="c">124</td><td><code>/taxi/z961/</code></td><td>D-2 開運神社めぐり(1)</td><td>再編集</td><td><code>/plan/d-2/</code></td><td>301</td></tr>
+<tr><td class="c">125</td><td><code>/taxi/p646/</code></td><td>D-3 開運神社めぐり(2)</td><td>再編集</td><td><code>/plan/d-3/</code></td><td>301</td></tr>
+<tr><td class="c">126</td><td><code>/taxi/s110/</code></td><td>E-1 世界一のビールと地酒を味わう</td><td>再編集</td><td><code>/plan/e-1/</code></td><td>301</td></tr>
+<tr><td class="c">127</td><td><code>/taxi/n311/</code></td><td>F-1 日本一美しいと呼ばれる廃線跡と白壁のまちめぐり</td><td>再編集</td><td><code>/plan/f-1/</code></td><td>301</td></tr>
+<tr><td class="c">128</td><td><code>/taxi/x359/</code></td><td>F-2 アートとレトロな街並みをめぐる</td><td>再編集</td><td><code>/plan/f-2/</code></td><td>301</td></tr>
+<tr><td class="c">129</td><td><code>/taxi/g106/</code></td><td>F-4 地元の旬を探そう！ご当地ソフトも食べ比べ！</td><td>再編集</td><td><code>/plan/f-4/</code></td><td>301</td></tr>
+<tr><td class="c">130</td><td><code>/taxi/g145/</code></td><td>G-1 美しいオシドリ観察と金運祈願の旅</td><td>再編集</td><td><code>/plan/g-1/</code></td><td>301</td></tr>
+</tbody></table></div>
+  </section>
+
+  <section id="questions">
+    <div class="pagebar"><h2>確認待ちと決定済み</h2><div class="meta">URLまわりの決めごとはすべて決定済み。残りは協議会・代理店への確認</div></div>
+    <ol class="qs"><li><b>デジタルカタログ（協議会）</b><p>「鳥取旅ガイド 大山山麓 日野川流域」が今も配っている最新の冊子か。古い場合はリンクを外す。</p></li><li><b>スポットの基本情報（協議会）</b><p>スポット約90件の住所・営業時間・料金・駐車場を、こちらで公式サイトから調べて表にするので、その内容を確認してもらう。</p></li><li><b>予約フォームの送信先（協議会）</b><p>タクシー会社別に振り分けるか、現行の受付フローを維持するか。</p></li><li><b>F-4 の運行（協議会）</b><p>現サイトの一覧に未掲載の「ご当地ソフト食べ比べ」を載せるか。</p></li></ol>
+    <div class="pagebar" style="margin-top:28px"><h2 style="font-size:18px">決定済み</h2></div>
+    <ul class="qs done"><li><b>多言語フォーム・外国語対応</b><p>A（2026-10-19）：外国語版のフォーム・サイトは作らない（企画書の範囲外。p.14 で海外旅行者は将来のターゲットとして「視野に入れる」）。日本語の予約フォームの項目名に英語を併記し、旧4言語フォーム（/reserve_taxi/en/ ほか）はここへ301。<code>/other-languages/</code> は「Language ／ 外国の方へ」の短い案内ページ（4言語：デジタルカタログ、予約フォームの使い方、タクシー会社の電話、ブラウザの翻訳機能）に作り直す。</p></li><li><b>デジタルカタログ</b><p>A：ビューアのファイル（<code>/system/digitalcatalog/</code>）を新サーバーにそのまま残し、<code>/digitalcatalog/</code> は4言語（日本語・英語・繁体字・韓国語）へのリンクを並べた小さな固定ページに作り直す。フッターからリンク（2026-10-19）。今の冊子が最新かは協議会に確認。</p></li><li><b>登山ガイド</b><p>固定ページ <code>/guide/tozan/</code> で新設（2026-10-19）。旧 /12/ の安全情報7ページを集約し、検索結果「登山」から案内。</p></li><li><b>地域の人のURL</b><p>職種＋通し番号（2026-10-19）：<code>/people/brewer-01/</code> <code>/people/fisher-01/</code>。個人情報の観点から氏名をURLに入れない。ページの名前は「表示名」として入力し、氏名を出さない人は「酒蔵の蔵人」などの呼び名にする。顔写真も本人の許可で決め、後ろ姿や手元でも組める構成に。一覧の絞り込みは <code>/people/?job=brewer</code>。トップの仮リンクも変更済み。</p></li><li><b>フォームの確認・完了画面</b><p>子ページにする（2026-10-19）：<code>/plan/reserve/confirm/</code> <code>/plan/reserve/thanks/</code> <code>/contact/confirm/</code> <code>/contact/thanks/</code>。完了画面の表示回数で予約リクエスト数を計測する。確認・完了画面は noindex。フォームの仕組みはページを分けられるもの（MW WP Form、または Contact Form 7＋完了画面への移動設定）。</p></li><li><b>記事・イベント・お知らせのURL</b><p>種類のあとに記事のスラッグ（2026-10-19）：<code>/journal/daisen-water/</code> <code>/event/beer-festa-2026/</code> <code>/news/new-route-mizu/</code>。入稿ルール：スラッグは半角英数とハイフンで3語程度まで、イベントは末尾に開催年。トップの仮リンクもこの形に変更済み。</p></li><li><b>スポット詳細ページ</b><p>作る（2026-10-19）。公開時は写真・説明・市町村・地図・公式サイト・関連するプラン／特集／物語の軽い詳細ページ。住所・営業時間・料金・駐車場は欄を用意し、入力されたものだけ表示（情報確認日つき、年1回見直し）。基本情報はこちらで公式サイトから調べて表を作り、協議会に確認してもらう。</p></li><li><b>特集記事のスラッグ</b><p>テーマ（軸）の特集は軸と同じ綴り（<code>/journal/katana/</code> <code>hakko</code> <code>mizu</code> <code>shinwa</code> <code>umi</code>）。季節・気分の特集は内容を表す英数の短い言葉（<code>/journal/autumn-leaves/</code> <code>/journal/winter-daisen/</code> <code>/journal/onsen/</code>）。毎年増える季節ものでも名前がぶつからないようにするため（2026-10-19）。</p></li><li><b>URLの言語</b><p>今のスラッグで確定（2026-10-19）。地名はローマ字、それ以外は今の綴りを正とする（気分 zekkei / gourmet / onsen / tozan / drive / family / rain、季節 spring〜winter、軸 mizu / mori / shinwa / katana / hakko / umi、物語 forest / faith / iron / water / sea、地域の人 brewer など）。</p></li><li><b>気分・季節・テーマは検索結果に集約</b><p>専用ページ（/discover/ /season/ /theme/）は作らず、すべて <code>/plan/?mood= ?season= ?theme=</code> の検索結果にする。トップ・メニュー・フッターのリンクも変更済み（59か所）。</p></li><li><b>読み物は特集記事（ジャーナルの投稿）</b><p>旧テーマ詳細・気分・季節に載せる予定だった素材（たたら特集、酒蔵、温泉、紅葉動画、スキーなど）は、ジャーナルの記事の種類「特集」として書く。条件が1つの検索結果では、その条件の特集の導入（アイキャッチ・抜粋・動画・「特集を読む」）を一覧の上に出す。</p></li><li><b>テーマ＝つながりの軸</b><p>テーマ専用の投稿タイプは作らず、軸のタグで絞り込む。軸のスラッグは <code>mizu / mori / shinwa / katana / hakko / umi</code> に統一（トップのジャーナルのリンクも <code>?axis=mizu</code> などに変更済み）。プラン一覧では <code>?theme=</code>、ジャーナル・物語では <code>?axis=</code> という名前で同じ値を使う。</p></li></ul>
+  </section>
+</main>
+</div>
+<script>
+(function(){
+  var rows=[].slice.call(document.querySelectorAll('#map tbody tr:not(.grp-row)'));
+  var q=document.getElementById('q'), f='all';
+  function apply(){
+    var k=(q.value||'').trim().toLowerCase();
+    rows.forEach(function(r){
+      var ok=(f==='all'||r.getAttribute('data-st')===f)&&(!k||r.textContent.toLowerCase().indexOf(k)>-1);
+      r.classList.toggle('hide',!ok);
+    });
+  }
+  q.addEventListener('input',apply);
+  [].forEach.call(document.querySelectorAll('.fbtn'),function(b){
+    b.addEventListener('click',function(){
+      f=b.getAttribute('data-f');
+      [].forEach.call(document.querySelectorAll('.fbtn'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+      apply();
+    });
+  });
+})();
+
+</script>
+</body>
+</html>

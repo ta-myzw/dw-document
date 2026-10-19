@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>大山ワンダー 下層WF</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ECEEEC; --paper:#FFFFFF; --ink:#1E2328; --sub:#6A7882; --line:#C9CFD2; --box:#E3E6E6; --box2:#D3D8D9;
+  --accent:#386A76; --accent-soft:#E2ECEE; --note:#FFF7DB; --note-ink:#6B5300;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Zen Kaku Gothic New',system-ui,sans-serif;font-size:14px;line-height:1.6}
+a{color:inherit}
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+nav.side{position:sticky;top:0;height:100vh;overflow:auto;background:#22303A;color:#E8EDEF;padding:22px 16px 40px}
+nav.side h1{font-size:15px;margin:0 0 4px;letter-spacing:.06em}
+nav.side .ver{font-size:11px;opacity:.6;margin-bottom:18px}
+nav.side .grp{font-size:10px;letter-spacing:.2em;opacity:.55;margin:18px 0 6px}
+nav.side a{display:block;text-decoration:none;padding:6px 10px;border-radius:6px;font-size:13px;opacity:.88}
+nav.side a:hover{background:rgba(255,255,255,.08)}
+nav.side a.on{background:var(--accent);opacity:1}
+nav.side a .id{display:inline-block;width:30px;opacity:.55;font-size:11px}
+main{padding:28px 32px 80px;min-width:0}
+.pagebar{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:16px}
+.pagebar h2{margin:0;font-size:22px;letter-spacing:.04em}
+.pagebar .meta{font-size:12px;color:var(--sub)}
+.pagebar .tags span{display:inline-block;font-size:11px;border:1px solid var(--line);border-radius:12px;padding:2px 10px;margin-left:6px;background:#fff}
+.purpose{background:#fff;border-left:3px solid var(--accent);padding:12px 16px;margin-bottom:18px;font-size:13px;border-radius:0 8px 8px 0}
+.purpose b{color:var(--accent)}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;align-items:start}
+.canvas{background:var(--paper);border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.08);overflow:hidden}
+.notes{position:sticky;top:20px;max-height:calc(100vh - 40px);overflow:auto}
+.notes h3{font-size:12px;letter-spacing:.2em;color:var(--sub);margin:0 0 8px}
+.note{background:var(--note);color:var(--note-ink);border-radius:8px;padding:10px 12px;margin-bottom:8px;font-size:12.5px;line-height:1.65}
+.note .n{display:inline-flex;width:20px;height:20px;border-radius:50%;background:#E0B400;color:#fff;font-size:11px;align-items:center;justify-content:center;margin-right:6px;font-weight:700}
+.note .src{display:block;margin-top:4px;color:#7A6A2A;font-size:11.5px}
+/* ---- wire blocks ---- */
+.blk{position:relative;padding:28px 48px;border-bottom:1px dashed #E1E5E6}
+.blk.flush{padding:0}
+.pin{position:absolute;left:10px;top:10px;width:22px;height:22px;border-radius:50%;background:#E0B400;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 0 0 3px #fff}
+.lbl{font-size:10px;letter-spacing:.24em;color:var(--sub);margin-bottom:8px}
+.ph{background:var(--box);position:relative;border-radius:6px;overflow:hidden;color:#8A949A;font-size:11px;display:flex;align-items:center;justify-content:center;text-align:center}
+.ph::before,.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent calc(50% - .5px),#CDD3D5 50%,transparent calc(50% + .5px))}
+.ph::after{background:linear-gradient(to top left,transparent calc(50% - .5px),#CDD3D5 50%,transparent calc(50% + .5px))}
+.ph span{position:relative;z-index:1;background:var(--box);padding:2px 8px;border-radius:4px}
+.ln{height:9px;background:var(--box2);border-radius:5px;margin:7px 0}
+.h{font-weight:700;letter-spacing:.04em}
+.ttl{font-size:26px;font-weight:500;letter-spacing:.06em;margin:4px 0 8px}
+.chip{display:inline-block;border:1px solid var(--line);border-radius:14px;padding:3px 12px;font-size:12px;margin:0 6px 6px 0;background:#fff}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1.4px solid var(--accent);color:var(--accent);border-radius:24px;padding:9px 22px;font-size:13px;letter-spacing:.08em;background:#fff}
+.btn.fill{background:var(--accent);color:#fff}
+.btn.dark{background:#1E2328;border-color:#1E2328;color:#fff}
+.grid{display:grid;gap:18px}
+.card .cap{font-size:13px;margin-top:8px}
+.card .meta{font-size:11px;color:var(--sub)}
+.row{display:flex;gap:18px;align-items:center}
+.gh{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;background:#F4F5F4;border-bottom:1px solid #E1E5E6;font-size:12px}
+.gh .logo{width:110px;height:30px}
+.gh nav span{margin:0 9px;color:#4A565C}
+.gf{background:#5E7A82;color:#fff;padding:26px 48px;font-size:12px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:20px}
+.gf div div{opacity:.75;margin:3px 0}
+.bc{font-size:11px;color:var(--sub);padding:12px 48px;border-bottom:1px dashed #E1E5E6}
+.field{border:1px solid var(--line);border-radius:6px;padding:8px 12px;background:#fff;font-size:12px;color:var(--sub);display:flex;justify-content:space-between}
+.field b{color:var(--ink);font-weight:500}
+.kv{display:grid;grid-template-columns:140px 1fr;border-top:1px solid #E1E5E6}
+.kv div{padding:10px 12px;border-bottom:1px solid #E1E5E6;font-size:13px}
+.kv div:nth-child(odd){background:#F6F7F7;color:var(--sub)}
+.tl{position:relative;padding-left:30px}
+.tl::before{content:"";position:absolute;left:10px;top:6px;bottom:6px;width:2px;background:var(--accent-soft)}
+.tl .stop{position:relative;display:grid;grid-template-columns:140px 1fr;gap:16px;margin-bottom:18px}
+.tl .stop::before{content:attr(data-n);position:absolute;left:-30px;top:0;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center}
+.tabs{display:flex;border-bottom:1px solid var(--line);gap:4px;margin-bottom:16px}
+.tabs span{padding:8px 16px;font-size:13px;color:var(--sub)}
+.tabs span.on{border-bottom:2px solid var(--accent);color:var(--ink)}
+.side2{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:28px;align-items:start}
+.box{border:1px solid var(--line);border-radius:10px;padding:18px;background:#fff}
+.steps{display:flex;gap:8px;margin-bottom:18px}
+.steps div{flex:1;text-align:center;font-size:12px;padding:8px;border-radius:6px;background:#F1F3F3;color:var(--sub)}
+.steps div.on{background:var(--accent);color:#fff}
+.sp-note{font-size:11.5px;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:6px 10px;margin-top:12px}
+/* overview */
+.ov{background:#fff;border-radius:8px;padding:24px 28px;margin-bottom:18px}
+.ov h3{margin:0 0 12px;font-size:15px}
+table.t{width:100%;border-collapse:collapse;font-size:12.5px}
+table.t th,table.t td{border-bottom:1px solid #E6E9EA;padding:8px 8px;text-align:left;vertical-align:top}
+table.t th{font-size:11px;letter-spacing:.1em;color:var(--sub);font-weight:500;background:#F6F7F7}
+table.t a{color:var(--accent)}
+.tree{font-size:13px;line-height:2}
+.tree .l1{font-weight:700}
+.tree .l2{padding-left:20px}
+.tree .l3{padding-left:40px;color:var(--sub)}
+@media (max-width:1100px){.stage{grid-template-columns:1fr}.notes{position:static;max-height:none}}
+@media (max-width:820px){
+  .app{grid-template-columns:1fr} nav.side{position:static;height:auto}
+  main{padding:16px}
+  .blk{padding:22px 18px}
+  .grid{grid-template-columns:1fr 1fr !important}
+  .side2{grid-template-columns:1fr}
+  .gf{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="side" id="side"></nav>
+  <main id="main"></main>
+</div>
+<script>
+/* ============ ページ定義 ============ */
+const PH=(label,h,extra='')=>`<div class="ph" style="height:${h}px;${extra}"><span>${label}</span></div>`;
+const L=(n,w=[100,92,96,70])=>Array.from({length:n},(_,i)=>`<div class="ln" style="width:${w[i%w.length]}%"></div>`).join('');
+const chips=(arr,on=-1)=>arr.map((c,i)=>`<span class="chip${i===on?' on':''}">${c}</span>`).join('');
+const card=(img,h,cap,meta='')=>`<div class="card">${PH(img,h)}<div class="cap">${cap}</div>${meta?`<div class="meta">${meta}</div>`:''}</div>`;
+const grid=(cols,items)=>`<div class="grid" style="grid-template-columns:repeat(${cols},minmax(0,1fr))">${items.join('')}</div>`;
+const head=(en,title,lead)=>`<div class="lbl">${en}</div><div class="ttl">${title}</div>${lead?`<div style="color:var(--sub);font-size:13px;max-width:640px">${lead}</div>`:''}`;
+const GH=`<div class="gh"><div class="ph logo"><span>LOGO</span></div><nav><span>大山ワンダーとは</span><span>探す</span><span>めぐる</span><span>知る</span><span>出会う</span><span>エリア</span><span>読みもの</span></nav><div class="row" style="gap:8px"><span>IG</span><span>YT</span><span class="btn fill" style="padding:5px 12px;font-size:11px">プランを探す →</span></div></div>`;
+const GF=`<div class="gf"><div><b>探す</b><div>絶景／グルメ／温泉／登山</div><div>ドライブ／家族旅／雨の日</div></div><div><b>めぐる</b><div>水・発酵・神話・刀・海をめぐる旅</div><div>季節で探す（春夏秋冬）</div></div><div><b>知る</b><div>物語 5つ</div><div>大山ワンダーとは／地域の人／エリア紹介</div><div>読みもの／お知らせ／イベント／アクセス</div></div><div><b>PLAN &amp; RESERVE</b><div>プランを探す／ご予約の流れ</div><div>IG / YT</div></div><div style="grid-column:1/-1;border-top:1px solid rgba(255,255,255,.25);padding-top:10px;opacity:.85">当サイトについて／お問い合わせ／各観光エリアお問い合わせ／山陰観光リンク／写真データ・レンタル／プライバシーポリシー／デジタルカタログ／Language</div></div>`;
+
+/* blocks: {h:html, n:'注記', src:'移行元', flush:bool} */
+const P = [
+{id:'00',grp:'概要',name:'ページ一覧・方針',overview:true},
+
+{id:'01',grp:'ブランド',name:'大山ワンダーとは',url:'/about/',tpl:'固定ページ',
+ purpose:'ブランドの考え方と「めぐり」の世界観を伝え、Discover・物語へ送り出す。初めて来た人の入口。',
+ blocks:[
+  {h:PH('メインビジュアル（大山〜日野川〜海の空撮 or 動画）',320,'border-radius:0'),flush:true,n:'トップFVと同じ世界観。コピー「1300年つづく、山の記憶を旅する。」',src:'企画書 4-3'},
+  {h:head('ABOUT','大山ワンダーとは')+`<div style="margin-top:14px">${L(6)}</div>`,n:'ブランドストーリー全文（「1300年前から〜めぐりに出会う旅である。」）。明朝・中央寄せで読み物として。',src:'企画書 4-3 ブランドストーリー'},
+  {h:`<div class="lbl">MEGURI</div><div class="h" style="margin-bottom:12px">山 → 森 → 川 → 里 → 海 のめぐり図</div>${PH('図解：水の循環と5つの物語（森・信仰・鉄・水・海）の位置づけ',260)}`,n:'水の循環に沿って「5つの物語」「5つのテーマ」がどこに位置するかを図解。各要素から物語詳細へリンク。',src:'新規制作'},
+  {h:`<div class="lbl">10 TOWNS</div><div class="h" style="margin-bottom:12px">大山山麓・日野川流域の10市町村</div>${PH('流域マップ（10市町村）',220)}<div style="margin-top:12px">${chips(['米子市','境港市','日吉津村','大山町','伯耆町','南部町','江府町','日野町','日南町','倉吉市'])}</div>`,n:'エリア詳細へのリンクを兼ねる。',src:'トップMapと共通部品'},
+  {h:`<div class="side2"><div><div class="lbl">LOGO</div><div class="h">ロゴに込めた想い</div>${L(4)}</div>${PH('ロゴ（タテ組）',160)}</div>`,n:'旧「ロゴに込めた意味」ページを統合。新ロゴの説明に差し替え。',src:'/policy/logo/ → 統合'},
+  {h:`<div class="lbl">HOW TO USE</div><div class="h" style="margin-bottom:12px">このサイトの使い方</div>${grid(3,['気分から探す','テーマでめぐる','物語を知る'].map(t=>`<div class="box"><b>${t}</b>${L(2)}</div>`))}`,n:'Discover／Thema／Storiesの3つの入口を説明。「気分から探す」「テーマでめぐる」はプランの検索結果（/plan/?filter=mood・theme）へ。',src:'企画書 6-1'},
+  {h:`<div class="row" style="justify-content:center;gap:14px"><span class="btn fill">旅を探す →</span><span class="btn">観光タクシー旅を見る →</span></div>`,n:'回遊用CTA（直帰率72%対策）。'},
+ ]},
+
+{id:'02',grp:'探す・めぐる',name:'プラン一覧（検索・絞り込み）',url:'/plan/',tpl:'アーカイブ（CPT: plan）',
+ purpose:'観光タクシー23コースを、出発地・気分・季節・テーマ・時間から探せるようにする。<b>気分・季節・テーマには専用ページを作らず、この検索結果に集約する</b>（トップ・メニューの気分／季節／テーマのカード、「すべての〜」、「探してみる」「プランを探す」の着地点）。URLパラメータで絞り込んだ状態を開く（?mood=zekkei・?season=autumn・?theme=katana で選択済み、?filter=mood／season／theme で該当の絞り込み欄を開くだけ）。条件が1つだけのときは、その条件の特集記事（ジャーナル）の導入を一覧の上に出す。',
+ blocks:[
+  {h:head('PLAN','観光タクシー旅プラン','大山山麓ぐる〜んと観光タクシー旅。通常料金の約4割引き、乗車特典付き。'),n:'ページ見出し。運行期間（2026/4/25〜2027/3/31）と料金を併記。',src:'/taxi/ トップ文'},
+  {h:`<div class="box" style="background:#F4F7F7"><div class="grid" style="grid-template-columns:1fr 1fr 1fr 1fr auto;gap:10px">${['<span>FROM</span><b>米子駅</b>','<span>TO</span><b>指定なし</b>','<span>DATE</span><b>YYYY/MM/DD</b>','<span>PAX</span><b>大人2名</b>'].map(x=>`<div class="field">${x}</div>`).join('')}<span class="btn dark">この条件で検索</span></div></div>`,n:'出発地：米子駅／皆生温泉／大山寺／米子鬼太郎空港／境港駅。到着地：＋生山駅・根雨駅・倉吉駅・県立美術館。日付入力で冬季運休コースを自動で除外。',src:'/taxi/ コース検索（発着地）'},
+  {h:`<div class="box" style="background:#F4F7F7"><div class="side2" style="grid-template-columns:260px minmax(0,1fr)">${PH('特集のアイキャッチ',150)}<div><div class="lbl">FEATURE ／ 特集</div><div class="h" style="font-size:18px;margin-bottom:6px">刀をめぐる旅 ― 鉄が生んだ、暮らしと文化。</div>${L(3)}<div class="row" style="gap:10px;margin-top:10px"><span class="btn">特集を読む →</span><span style="font-size:12px;color:var(--sub)">▶ 動画：伯耆国に眠る名刀の記憶（語り：中村悠一）</span></div></div></div></div>`,n:'<b>選んだ条件の特集（条件が1つのときだけ）</b>。/plan/?theme=katana なら、軸「刀」が付いた特集記事のうち「検索結果に出す」にチェックした1本を表示：アイキャッチ・抜粋・動画（任意）・「特集を読む」。条件が2つ以上、または該当する特集がない場合は出さず一覧だけ。特集本体はジャーナル（/journal/katana/ など）で、管理画面の投稿として作る。',src:'旧 テーマ詳細・気分・季節の素材（/tatara/・/topics/sake_poroject_x/・/onsen/・/12/・/autumnleaves_movie/・/13/ ほか）は特集記事へ'},
+  {h:`<div class="side2" style="grid-template-columns:240px minmax(0,1fr)"><div class="box"><div class="lbl">FILTER</div><div class="h" style="font-size:12px">気分で選ぶ</div>${chips(['絶景','グルメ','温泉','登山','ドライブ','家族旅','雨の日'])}<div class="h" style="font-size:12px;margin-top:8px">季節で選ぶ</div>${chips(['春','夏','秋','冬'])}<div class="h" style="font-size:12px;margin-top:8px">テーマで選ぶ</div>${chips(['水','発酵','神話','刀','海'],3)}<div class="h" style="font-size:12px;margin-top:8px">所要時間</div>${chips(['3時間','4時間','5時間'])}<div class="h" style="font-size:12px;margin-top:8px">ジャンル（現行）</div>${chips(['歴史探訪','大山で遊ぶ','さかなと鬼太郎','神社','銘酒','倉吉','季節限定'])}</div><div><div class="row" style="justify-content:space-between;margin-bottom:12px"><div style="font-size:12px">適用中：<span class="chip on">刀 ✕</span> ／ 全 <b>3</b> コース</div><div class="field" style="width:160px">並び替え<b>おすすめ順 ▾</b></div></div>${grid(3,[['A-2 ／ NEW','童子切安綱を生んだ伯耆安綱ゆかりの地めぐり','米子駅→米子駅 ／ 5時間 ／ 18,000円'],['A-3','開運祈願とたたらの歴史にふれる旅','4〜5時間 ／ 15,000円〜'],['D-2','開運神社めぐり(1)','4〜5時間 ／ 15,000円〜']].map(c=>card(c[0],120,c[1],c[2])))}</div></div>`,n:'カード：コード・NEW/特典バッジ・タイトル・発着・時間・特別料金/通常料金・運休表示。気分/季節/テーマのタグは整理表「タクシープラン」シートの案をもとに付与。テーマの絞り込みは「つながりの軸」のタグ（水・発酵・神話・刀・海）をそのまま使う（テーマ専用の登録はしない）。見出しは条件に合わせて「刀のプラン」「秋のプラン」のように変える。',src:'企画書 6-6 WF／整理表 タクシープラン'},
+  {h:`<div class="grid" style="grid-template-columns:1fr 1fr 1fr">${['ご利用期間・料金','ご利用前の注意事項','乗車特典一覧／パンフレット（5言語）'].map(t=>`<div class="box"><b>${t}</b>${L(3)}</div>`).join('')}</div>`,n:'現 /taxi/ の「ご利用前に必ずお読みください」を折りたたみで残す。tabiwa by WESTER の販売案内もここ。',src:'/taxi/ 注意事項'},
+  {h:`<div class="row" style="justify-content:space-between"><div><b>タクシー会社へのお問い合わせ</b><div style="font-size:12px;color:var(--sub)">7社の電話番号／問い合わせフォーム（1本化）</div></div><span class="btn">お問い合わせ一覧 →</span></div>`,n:'旧7フォームは「会社を選ぶ」1フォームに統合。',src:'/taxi/n142/ ほか7ページ'},
+  {h:`<div class="sp-note">SP：検索バーは2列×2段。特集の導入は写真を上にして1列（抜粋は3行まで）。絞り込みは「絞り込み」ボタン→下からシート表示。カードは1列。</div>`},
+ ]},
+
+{id:'03',grp:'探す・めぐる',name:'プラン詳細',url:'/plan/a-2/',tpl:'詳細（CPT: plan）',
+ purpose:'コースの魅力と立ち寄り先を見せ、そのまま予約フォームへ。スポット情報はスポットDBから呼び出す。',
+ blocks:[
+  {h:PH('メイン写真（コースを代表する1枚）',300,'border-radius:0'),flush:true,n:'写真クレジットを右下に表示（トップと同じルール）。'},
+  {h:`<div class="side2"><div><div>${chips(['A-2','NEW 2026','特典付き'])}</div><div class="ttl">童子切安綱を生んだ 伯耆安綱ゆかりの地めぐり</div><div style="font-size:13px;color:var(--sub)">天下五剣のひとつ「童子切安綱」を生んだ、伯耆国の刀工・安綱の足跡を辿る新ルート。</div><div style="margin-top:10px">${chips(['刀をめぐる旅','秋','5時間'])}</div></div><div class="box"><div class="lbl">PRICE</div><div style="font-size:24px">18,000円 <span style="font-size:12px;color:var(--sub)">通常 33,000円</span></div><div class="kv" style="grid-template-columns:80px 1fr;margin:10px 0"><div>発着</div><div>米子駅 → 米子駅／皆生温泉</div><div>出発</div><div>12時まで</div><div>人数</div><div>1台4名まで</div></div><span class="btn fill" style="width:100%;justify-content:center">このプランで予約する →</span><div style="font-size:11px;color:var(--sub);margin-top:6px">メール予約は利用日の30〜5日前まで</div></div></div>`,n:'右の予約ボックスはPCで追従（sticky）。SPは画面下に固定バー「予約する」。',src:'/taxi/s129/'},
+  {h:`<div class="lbl">ROUTE</div><div class="h" style="margin-bottom:14px">めぐるルート</div><div class="side2"><div class="tl">${['米子駅','伯耆安綱の碑','大山寺宝物館 霊宝閣（冬期閉館）','花ノ御前','道の駅 にちなん日野川の郷','日南町大原（下阿毘縁）','お菓子の壽城','米子駅または皆生温泉'].map((s,i)=>`<div class="stop" data-n="${i+1}">${PH('写真',80)}<div><b>${s}</b>${i&&i<7?L(2):''}<div style="font-size:11px;color:var(--accent)">${i&&i<7?'スポット詳細 →':''}</div></div></div>`).join('')}</div>${PH('ルート地図（立ち寄り先のピン＋線）',360)}</div>`,n:'立ち寄り先はスポットDB（CPT: spot）を順番に並べるだけで組める。説明文は現サイトの文章を流用し、事実確認のうえ整える。',src:'/taxi/s129/ 立ち寄り先8件'},
+  {h:`<div class="box" style="background:#F4F7F7"><div class="lbl">SPECIAL</div><div class="side2"><div><b>乗車特典：声優・中村悠一さん語りの特別動画URL入りオリジナルカード</b>${L(2)}</div>${PH('YouTube埋め込み',120)}</div></div>`,n:'動画（伯耆国に眠る名刀の記憶）を埋め込み、物語「鉄の物語」へ送る。',src:'/blognews/y839/ ・ /5/'},
+  {h:`<div class="lbl">RELATED STORY</div>${grid(3,['鉄の物語','特集：刀をめぐる旅','日南町（エリア）'].map(t=>card('サムネイル',110,t)))}`,n:'プラン→物語・特集（ジャーナル）・エリアへ。「点と点が繋がった物語」に触れさせる導線。'},
+  {h:`<div class="lbl">OTHER PLANS</div>${grid(4,['A-3 開運祈願とたたら','D-2 開運神社めぐり(1)','A-1 米子城と城下町','G-1 オシドリ観察'].map(t=>card('写真',90,t,'4時間 ／ 15,000円')))}`,n:'同じテーマ・同じ発着地のプランを自動表示。'},
+  {h:`<div class="kv"><div>ご注意</div><div>価格に入場料・飲食代は含みません／設定時間を超えた場合は追加料金／コース変更不可 など</div><div>お問い合わせ</div><div>ご予約・タクシー：各タクシー会社 ／ 観光スポット：各観光協会</div></div>`,n:'全プラン共通の注意事項は共通パーツとして管理。',src:'/taxi/ 注意事項'},
+ ]},
+
+{id:'04',grp:'探す・めぐる',name:'予約フォーム',url:'/plan/reserve/',tpl:'フォーム（3ステップ）',
+ purpose:'迷わず予約リクエストを送れること。プラン詳細から来た場合はコース・発着地を自動入力。',
+ blocks:[
+  {h:`<div class="steps"><div class="on">1. 内容の入力</div><div>2. 確認</div><div>3. 送信完了</div></div>`,n:'現行フォームの項目は維持し、3ステップに分ける。'},
+  {h:`<div class="box" style="background:#FFF9EA;border-color:#EBD9A6;font-size:12.5px"><b>ご予約の前に</b><ul style="margin:6px 0 0;padding-left:18px"><li>メール予約は利用日の30日前〜5日前まで（4日前以降はお電話で）</li><li>自動返信メールの時点では予約は完了していません。タクシー会社からの完了メールで確定します</li><li>料金はご利用時にドライバーへお支払いください（3時間12,000円／4時間15,000円／5時間18,000円）</li></ul></div>`,n:'注意事項は短く要点だけ。詳細はアコーディオン。',src:'/reserve_taxi/ 注意事項'},
+  {h:`<div class="side2"><div><div class="lbl">PLAN</div><div class="grid" style="grid-template-columns:1fr 1fr;gap:10px">${[['ご希望のコース / Course','A-2 伯耆安綱ゆかりの地めぐり（5時間）'],['ご利用日 / Date','2026/11/08（日）'],['ご出発地 / Pick-up','米子駅'],['ご到着地 / Drop-off','皆生温泉'],['ご乗車予定時間 / Pick-up time','10:00'],['ご希望のタクシー会社 / Taxi company','指定なし ▾']].map(f=>`<div class="field">${f[0]}<b>${f[1]}</b></div>`).join('')}</div><div class="lbl" style="margin-top:18px">GUEST</div><div class="grid" style="grid-template-columns:1fr 1fr;gap:10px">${[['ご利用人数 / Passengers','2名（1台4名まで）'],['大型のお荷物 / Large luggage','なし'],['お支払方法 / Payment','現金 ／ クレジットカード'],['代表者名（プラカード表示名） / Name (on sign board)',''],['電話番号（携帯） / Mobile phone',''],['メールアドレス / Email',''],['国名（日本以外の方） / Country',''],['その他 / Notes','']].map(f=>`<div class="field">${f[0]}<b>${f[1]}</b></div>`).join('')}</div></div><div class="box"><div class="lbl">SUMMARY</div>${PH('プラン写真',90)}<div style="font-size:13px;margin-top:8px"><b>A-2</b> 伯耆安綱ゆかりの地めぐり</div><div style="font-size:20px;margin:6px 0">18,000円</div><div style="font-size:11px;color:var(--sub)">出発は12時まで</div></div></div>`,n:'項目名は日本語に英語を併記（例：ご利用日 / Date）。外国語版のフォームは作らず、旧4言語フォーム（/reserve_taxi/en/ ほか）はこのフォームへ転送。日付は「30〜5日前」のみ選択可。冬季運休コース×12〜3月は選択不可にする。乗車時間はコースの出発制限（12時まで等）と連動。1台4名を超える場合は追加予約を案内。',src:'/reserve_taxi/ 入力項目'},
+  {h:`<div class="row" style="justify-content:center"><span class="btn dark">入力内容を確認する →</span></div>`},
+  {h:`<div class="box" style="text-align:center"><div class="h">送信完了</div><div style="font-size:12px;color:var(--sub)">タクシー会社からの予約完了メールをお待ちください。お急ぎの場合は下記へお電話ください。</div><div style="margin-top:10px">${chips(['皆生タクシー 0859-33-4331','日本交通米子 0859-22-3131','…'])}</div><div style="margin-top:12px">${chips(['旅の物語を読む','エリアを見る'])}</div></div>`,n:'完了画面に選択した会社の電話番号と、待ち時間に読める物語への導線。',src:'/taxi/n142/'},
+  {h:`<div class="sp-note">決定：確認画面 /plan/reserve/confirm/、送信完了 /plan/reserve/thanks/（完了画面の表示回数で予約リクエスト数を計測、どちらも noindex）。フォームはページを分けられる仕組み（MW WP Form、または Contact Form 7＋完了画面への移動）。要確認：送信先をタクシー会社別に振り分けるか、現行の受付フローを維持するか。</div>`},
+ ]},
+
+{id:'05',grp:'知る',name:'物語一覧',url:'/stories/',tpl:'アーカイブ（CPT: story）',
+ purpose:'5つの物語（水・森・信仰・鉄・海）を雑誌の目次のように見せる。',
+ blocks:[
+  {h:head('STORIES','つながりを知る','大山に降った雨が森・川・里・海へとめぐるように。この地域に息づく5つの物語。'),n:'導入文は旧「歴史を知る（神・鉄・水の3つのキーワード）」を発展させる。',src:'/rekishi/'},
+  {h:`<div class="side2" style="grid-template-columns:1.3fr 1fr">${PH('リード特集：水の物語',300)}<div><div class="lbl">FEATURE — WATER</div><div class="ttl">水の物語</div>${L(4)}<span class="btn">続きを読む →</span></div></div>`,n:'リード特集（トップと同じ構成）。'},
+  {h:grid(4,['森の物語','信仰の物語','鉄の物語','海の物語'].map(t=>card('写真',160,t,'リード一文')) ),n:'各物語の下に「この物語に出てくる場所／人」を表示してもよい。'},
+  {h:`<div class="lbl">MEGURI MAP</div>${PH('5つの物語の舞台マップ（山→海）',220)}`,n:'物語の舞台を流域図上に配置。大山ワンダーとはの図解と共通化。'},
+ ]},
+
+{id:'06',grp:'知る',name:'物語詳細（例：鉄の物語）',url:'/stories/iron/',tpl:'詳細（CPT: story）',
+ purpose:'長文の読み物。写真・図解・動画で地域の背景を伝え、特集・プラン・人へ回遊させる。',
+ blocks:[
+  {h:PH('フルブリード写真＋「鉄の物語｜たたらが、暮らしと文化を育てた。」',360,'border-radius:0'),flush:true},
+  {h:`<div style="max-width:640px;margin:0 auto"><div class="lbl">INTRODUCTION</div>${L(5)}</div>`,n:'本文幅は640px前後で読みやすく。'},
+  {h:`<div style="max-width:640px;margin:0 auto"><div class="h">1. 日野川は「火の川」だった</div>${L(4)}${PH('写真（キャプション付き）',220)}<div class="h" style="margin-top:16px">2. たたら製鉄の流れ</div>${PH('図解：鉄穴流し→炭焼き→たたら操業→鉧出し→大鍛冶',180)}<div class="h" style="margin-top:16px">3. 砂が海に流れ、弓ヶ浜ができた</div>${L(3)}</div>`,n:'見出し付きの章立て。旧ページを章として再構成：[鉄]のプロローグ／奥日野のたたら製鉄／日本刀制作の工程／伯耆国と童子切安綱。図版・画像の使用許諾（TNM・chiikimirai）を確認。',src:'/rekishi/2/ /tatara/seitetsu/ /tatara/nihontou/ /tatara/yasutsuna/'},
+  {h:`<div style="max-width:640px;margin:0 auto" class="box"><div class="lbl">PLACES IN THIS STORY</div>${grid(3,['都合山たたら跡','船通山','弓ヶ浜'].map(t=>card('写真',70,t)))}</div>`,n:'物語に登場するスポット（スポットDB）。'},
+  {h:`<div class="lbl">NEXT</div>${grid(3,['特集：刀をめぐる旅','人：たたらを伝える人','プラン：A-3'].map(t=>card('写真',100,t)))}<div class="row" style="justify-content:space-between;margin-top:16px;font-size:12px"><span>← 信仰の物語</span><span>海の物語 →</span></div>`,n:'前後の物語へ。水の流れの順（森→信仰→鉄→水→海）でつなぐ。'},
+ ]},
+
+{id:'07',grp:'出会う',name:'地域の人 一覧',url:'/people/',tpl:'アーカイブ（CPT: person）',
+ purpose:'「主役は風景ではなく人」。リピーターがまた来る理由をつくる。',
+ blocks:[
+  {h:head('PEOPLE','地域の人に出会う','この地域で暮らし、営む人々の想いや活動をインタビューでご紹介します。'),src:'企画書 6-2'},
+  {h:`${chips(['すべて','酒蔵','漁師','職人','神職','ガイド'],0)}`,n:'職種／エリアで絞り込み。初期5名〜。'},
+  {h:grid(3,['酒蔵｜稲田本店','漁師｜境港','職人｜手仕事','神職｜大神山神社','ガイド｜大山'].map(t=>card('ポートレート（3:4）',200,t,'エリア ／ 一言コピー'))),n:'現サイトに人物記事はなし。酒蔵の4蔵レポートを取材の下敷きにする。',src:'/topics/sake_poroject_x/invest/'},
+ ]},
+
+{id:'08',grp:'出会う',name:'地域の人 詳細',url:'/people/brewer-01/',tpl:'詳細（CPT: person）',
+ purpose:'インタビュー記事。人→その人の場所→プラン・特集へ。',
+ blocks:[
+  {h:`<div class="side2" style="grid-template-columns:1fr 1fr">${PH('ポートレート',340)}<div><div class="lbl">PEOPLE — BREWER</div><div class="ttl">「大山の水で、<br>300年続く酒を。」</div><div style="font-size:13px">表示名／肩書き／所属（稲田本店・米子市）</div></div></div>`,n:'キャッチは本人の言葉から。URLは職種＋通し番号（/people/brewer-01/）で氏名を入れない。名前は「表示名」として入力し、氏名を出さない人は「酒蔵の蔵人」などの呼び名に。顔写真も本人の許可で決め、後ろ姿・手元の写真でも組める構成に。'},
+  {h:`<div style="max-width:640px;margin:0 auto">${['— 酒造りを始めたきっかけは？','— 大山の水の特徴は？','— 旅の人に伝えたいこと'].map(q=>`<div class="h" style="margin-top:12px">${q}</div>${L(4)}`).join('')}${PH('作業風景',200)}</div>`,n:'Q&A形式。写真3〜5枚。'},
+  {h:`<div class="box"><div class="side2"><div><b>この人に会える場所</b><div class="kv" style="margin-top:8px"><div>施設</div><div>稲田本店</div><div>住所</div><div>米子市…</div><div>見学</div><div>要予約</div></div></div>${PH('地図',140)}</div></div>`,n:'スポットDBと連携。'},
+  {h:`<div class="lbl">RELATED</div>${grid(3,['特集：発酵をめぐる旅','プラン：E-1','物語：水の物語'].map(t=>card('写真',100,t)))}`},
+ ]},
+
+{id:'09',grp:'エリア',name:'エリア紹介（一覧）',url:'/area/',tpl:'アーカイブ（タクソノミー: area）',
+ purpose:'10市町村を「流域の中の位置づけ」で紹介し、周遊を促す。',
+ blocks:[
+  {h:head('AREA','エリア紹介','大山山麓・日野川流域の10市町村。山から海まで、それぞれの個性をめぐる。')},
+  {h:`<div class="side2" style="grid-template-columns:1.2fr 1fr">${PH('流域マップ（10市町村をクリック）',340)}<div>${['海のまち｜境港市・米子市・日吉津村','山のふもと｜大山町・伯耆町・南部町・江府町','川の源流｜日野町・日南町','白壁のまち｜倉吉市'].map(t=>`<div class="box" style="margin-bottom:8px;font-size:13px">${t}</div>`).join('')}</div></div>`,n:'山・川・海のグループで見せる（グルーピング案）。',src:'トップMapと共通'},
+  {h:grid(5,['米子市','境港市','日吉津村','大山町','伯耆町','南部町','江府町','日野町','日南町','倉吉市'].map(t=>card('写真',90,t,'キャッチ'))),n:'トップのエリアチップと同じキャッチ。'},
+ ]},
+
+{id:'10',grp:'エリア',name:'エリア詳細（例：日野町）',url:'/area/hino/',tpl:'詳細（タクソノミー: area）',
+ purpose:'市町村ごとの見どころ・プラン・物語・問い合わせ先をまとめる。各観光協会サイトへの橋渡し。',
+ blocks:[
+  {h:PH('エリア写真＋「日野町｜たたらとオシドリの川」',280,'border-radius:0'),flush:true},
+  {h:`<div class="side2"><div>${L(4)}</div>${PH('流域の中の位置（ミニ地図）',140)}</div>`,n:'流域の中での位置づけを一文で（例：日野川の中流、たたらで栄えた町）。',src:'/tatara/hino/ 冒頭'},
+  {h:`<div class="lbl">SPOT</div>${grid(4,['花ノ御前','都合山たたら跡','たたらの楽校 根雨楽舎','オシドリ観察小屋','金持神社'].map(t=>card('写真',90,t,'タグ')))}`,n:'スポットDB（area=日野町）。',src:'/tatara/hino/ スポット'},
+  {h:`<div class="lbl">PLAN ／ STORY</div>${grid(3,['G-1 オシドリ観察と金運祈願','A-3 開運祈願とたたら','鉄の物語'].map(t=>card('写真',90,t)))}`},
+  {h:`<div class="kv"><div>アクセス</div><div>大阪から車で3時間10分／岡山からJRで1時間50分 など</div><div>観光の問い合わせ</div><div>日野町 観光窓口（電話）</div><div>公式観光サイト</div><div>外部リンク</div></div>`,n:'各観光エリアお問い合わせ先・各観光協会リンクを移設。',src:'/contact_kanko/・トップの市町村リンク'},
+  {h:`<div class="sp-note">素材あり：米子・伯耆・日野・日南・倉吉（刀剣たたら特集の市町別ページ）。新規執筆：境港・日吉津・大山・江府・南部。</div>`},
+ ]},
+
+{id:'11',grp:'読みもの・お知らせ',name:'ジャーナル一覧・詳細',url:'/journal/',tpl:'投稿（post）',
+ purpose:'季節やテーマの読み物・動画を蓄積する「読んで地域を知る」メディア。SEO流入の受け皿。<b>気分・季節・テーマの特集記事もここで書き</b>、プランの検索結果の上に導入として呼び出す。',
+ blocks:[
+  {h:head('JOURNAL','読みもの')+`<div style="margin-top:10px">${chips(['すべて','特集','コラム','インタビュー','動画'],0)}</div><div style="margin-top:8px">${chips(['水','森','神話','刀','発酵','海'],-1)}</div>`,n:'記事の種類（カテゴリ）で絞り込み、つながりの軸（共通タクソノミー）でも絞り込み可。軸に当てはまらない記事（登山・サイクリング等）は軸なしで可。'},
+  {h:grid(3,['なぜ大山の水はおいしいのか','境港の魚と大山の関係','1300年続く祈りの道','I LOVE 大山登山','それゆけ！大山山麓サイクリング（動画）','時をつなぐ六つの景色（動画）'].map(t=>card('サムネイル',120,t,'カテゴリ ／ 日付'))),n:'旧「特集記事」「大山ワンダームービー」「サイクリング」「I LOVE 大山登山」を移行。特集は「刀をめぐる旅」「発酵をめぐる旅」「大山の紅葉」「冬の大山」などから順次。',src:'/special_feature/ /5/ /cycling/ /4/1/'},
+  {h:`<div class="lbl">— 詳細テンプレート —</div><div style="max-width:640px;margin:0 auto"><div class="meta" style="font-size:11px;color:var(--sub)">CULTURE ／ 2026.11.01</div><div class="ttl">発酵文化が根付いた理由</div>${PH('アイキャッチ',220)}${L(6)}<div class="row" style="margin-top:10px">${chips(['#発酵','#米子市','#酒蔵'])}</div></div>`,n:'本文＋タグ（エリア・気分・季節・つながりの軸）。末尾に関連プラン・関連物語。SNSシェア。'},
+  {h:`<div class="lbl">— 特集記事の追加ブロック —</div><div style="max-width:640px;margin:0 auto"><div class="lbl">MODEL COURSE</div><div class="tl">${['伯耆安綱の碑（伯耆町）','都合山たたら跡（日野町）','たたらの楽校 根雨楽舎（日野町）'].map((x,i)=>`<div class="stop" data-n="${i+1}">${PH('写真',70)}<div><b>${x}</b>${L(1)}</div></div>`).join('')}</div>${PH('動画（YouTube）',180)}<div class="box" style="margin-top:14px;background:#F4F7F7"><div class="row" style="justify-content:space-between"><b>この特集のプランを見る</b><span class="btn fill">刀のプラン 3件 →</span></div></div></div>`,n:'特集記事だけで使うブロック（ブロックパターンとして用意）：モデルコース（スポットDBの並び）、動画、「この条件のプランを見る」（/plan/?theme=katana へ）。旧テーマ詳細のモデルコース・動画・予約導線はここへ。季節の特集には、その季節のイベント（イベントCPTから期間で自動）も並べられる。',src:'/tatara/ ・/topics/sake_poroject_x/ ・/autumnleaves_movie/ ・/13/'},
+  {h:`<div class="kv"><div>記事の種類</div><div>特集 ／ コラム ／ インタビュー ／ 動画</div><div>タグ</div><div>気分・季節・つながりの軸・エリア（プランと共通）</div><div>検索結果に出す</div><div>チェックした特集だけ、同じタグの検索結果の上に導入を表示（1つのタグにつき1本）</div><div>動画URL</div><div>任意。検索結果の導入にも表示</div></div>`,n:'特集記事の入力項目（カスタムフィールド）。運用担当は通常の投稿と同じ画面で作れる。'},
+ ]},
+
+{id:'12',grp:'読みもの・お知らせ',name:'イベント一覧・詳細',url:'/event/',tpl:'CPT: event',
+ purpose:'旬のイベントを日付・エリアで探せるように。開催日・会場を構造化（季節ページ・エリアページに自動表示）。',
+ blocks:[
+  {h:head('EVENTS','イベント情報')+`<div class="row" style="margin-top:10px;gap:10px"><div class="field" style="width:160px">開催月<b>2026年11月 ▾</b></div><div class="field" style="width:160px">エリア<b>すべて ▾</b></div>${chips(['開催中','これから','終了'],1)}</div>`},
+  {h:['11/03（祝）｜大山紅葉ウォーク｜大山町 大山寺周辺','11/15（日）｜流域マルシェ｜米子市 米子城跡','10/02〜04｜郷土のタカラ「弓浜絣」と「伯州綿」｜米子市文化ホール（終了）'].map(t=>`<div class="box" style="margin-bottom:8px;display:grid;grid-template-columns:90px 1fr 70px;gap:12px;align-items:center">${PH('写真',56)}<div style="font-size:13px">${t}</div><span style="font-size:11px;color:var(--accent)">詳細 →</span></div>`).join(''),n:'外部サイトのイベント（観光協会等）は外部リンクとして登録できるようにする。',src:'/blognews/ のイベント告知'},
+  {h:`<div class="lbl">— 詳細テンプレート —</div><div class="side2"><div>${PH('イベント写真／チラシ',220)}${L(4)}</div><div class="kv" style="grid-template-columns:80px 1fr"><div>日時</div><div>2026/11/03 10:00〜</div><div>会場</div><div>大山寺周辺</div><div>エリア</div><div>大山町</div><div>料金</div><div>無料</div><div>主催</div><div>—</div><div>問い合わせ</div><div>—</div><div>公式</div><div>外部リンク</div></div></div>`,n:'カスタムフィールドで構造化。'},
+ ]},
+
+{id:'13',grp:'読みもの・お知らせ',name:'お知らせ一覧・詳細',url:'/news/',tpl:'投稿（news）',
+ purpose:'協議会からのお知らせ。観光客向け・事業者向け・重要を分ける。',
+ blocks:[
+  {h:head('NEWS','お知らせ')+`<div style="margin-top:10px">${chips(['すべて','お知らせ','メディア掲載','事業者向け','重要'],0)}</div>`,n:'旧「楽しむお知らせ」「ビジネス向けのお知らせ」「重要なお知らせ」を1つに統合しカテゴリで分ける。',src:'/blognews/ /topics/ /important_info/'},
+  {h:['2026.10.01｜重要｜大山観光のお問合せは大山町観光案内所まで','2026.06.24｜事業者向け｜大山圏域酒蔵ツーリズム講演会開催のお知らせ','2026.01.09｜メディア掲載｜「るるぶFREE山陰」に特集記事が掲載されました'].map(t=>`<div style="padding:12px 0;border-bottom:1px solid #E6E9EA;font-size:13px">${t}</div>`).join('')+`<div style="text-align:center;margin-top:14px">${chips(['‹','1','2','›'],1)}</div>`},
+  {h:`<div class="lbl">— 詳細テンプレート —</div><div style="max-width:640px;margin:0 auto"><div style="font-size:11px;color:var(--sub)">2026.06.24 ／ 事業者向け</div><div class="ttl" style="font-size:20px">大山圏域酒蔵ツーリズム講演会開催のお知らせ</div>${L(5)}<div style="margin-top:12px"><span class="btn">お知らせ一覧へ</span></div></div>`},
+ ]},
+
+{id:'14',grp:'ガイド',name:'アクセス',url:'/access/',tpl:'固定ページ',
+ purpose:'全国から流域への行き方を1ページで。旧5ページを統合。',
+ blocks:[
+  {h:head('ACCESS','アクセス')+`<div style="margin-top:12px">${PH('広域地図（大阪・岡山・広島・東京→米子・大山）',220)}</div>`},
+  {h:`<div class="tabs"><span class="on">車</span><span>電車</span><span>高速バス</span><span>飛行機</span></div><div class="kv"><div>大阪・神戸から</div><div>約3時間（中国道→米子道）</div><div>岡山から</div><div>約2時間</div><div>東京から</div><div>約11時間30分</div></div>`,n:'タブで切替（SPはアコーディオン）。所要時間・便数は最新情報に更新。',src:'/18/ /18/01/ /18/3/ /18/4/ /18/5/'},
+  {h:`<div class="lbl">LOCAL</div><div class="h">現地での移動</div>${grid(3,['観光タクシー旅（プラン）','路線バス・シャトルバス','レンタカー・サイクリング'].map(t=>`<div class="box">${t}${L(2)}</div>`))}`,n:'観光タクシーへの導線をここにも。'},
+  {h:`<div class="box" style="background:#FFF9EA;border-color:#EBD9A6"><b>冬季の注意</b><div style="font-size:12px">県道30号線の冬季通行止、スキー場への道路・駐車場・シャトルバス</div></div>`,src:'/13/2/ /13/3/ /13/01/'},
+  {h:`<div class="lbl">LINKS</div>${chips(['大山ドライブNavi','ドラぷら','乗換案内'])}`,src:'/18/ アクセス便利サイト'},
+ ]},
+
+{id:'15',grp:'ガイド',name:'固定ページ汎用／お問い合わせ',url:'/policy/ ほか',tpl:'固定ページ・フォーム',
+ purpose:'当サイトについて・プライバシーポリシー／各観光エリアお問い合わせ／山陰観光リンク／写真データ・レンタル／お問い合わせフォーム／登山ガイド／Language（外国の方へ）／デジタルカタログ。',
+ blocks:[
+  {h:head('ABOUT THIS SITE','当サイトについて・プライバシーポリシー')+`<div style="max-width:640px;margin-top:14px">${['運営者','閲覧環境','著作権','個人情報の取り扱い','リンクについて'].map(h=>`<div class="h" style="margin-top:12px">${h}</div>${L(3)}`).join('')}</div>`,n:'共通の読み物テンプレ。目次付き。',src:'/policy/ /25/ /30/'},
+  {h:head('GUIDE','登山ガイド')+`<div class="side2" style="margin-top:14px"><div>${['大山の気候','登山の心得','服装・装備','初心者におすすめのルート','大山登山の危険','山小屋'].map(h=>`<div class="h" style="margin-top:10px">${h}</div>${L(2)}`).join('')}</div><div class="box" style="font-size:12px"><b>目次</b><div style="margin-top:6px">01 気候 ／ 02 心得 ／ 03 服装・装備 ／ 04 ルート ／ 05 危険 ／ 06 山小屋</div></div></div>`,n:'/guide/tozan/。旧 /12/ の安全情報7ページを1ページに集約（読み物テンプレート＋目次）。検索結果「登山」（/plan/?mood=tozan）の上から案内。情報確認日を表示。',src:'/12/1〜5・/12/11・/12/13'},
+  {h:head('LANGUAGE','Language ／ 外国の方へ')+`<div class="grid" style="grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px">${['English','繁體中文','简体中文','한국어'].map(t=>`<div class="box" style="font-size:12px"><b>${t}</b>${L(3)}</div>`).join('')}</div>`,n:'/other-languages/（URL据え置き）。各言語で短く：デジタルカタログ（観光ガイドブック）、予約フォームの使い方（項目は英語併記）、タクシー会社の電話番号、ブラウザの翻訳機能の案内。外国語版のサイトは作らない（企画書の範囲外）。',src:'/other-languages/'},
+  {h:head('DIGITAL CATALOG','デジタルカタログ')+`<div class="row" style="gap:14px;margin-top:12px">${PH('表紙',120,'width:90px;flex:none')}<div>${chips(['日本語','English','繁體中文','한국어'])}<div style="font-size:12px;color:var(--sub);margin-top:6px">鳥取旅ガイド 大山山麓 日野川流域</div></div></div>`,n:'/digitalcatalog/（URL据え置き）。4言語のビューア（/system/digitalcatalog/）はWPとは別のファイルとしてそのまま残し、このページからリンク。フッターからもリンク。冊子が最新かは協議会に確認。',src:'/digitalcatalog/'},
+  {h:`<div class="lbl">— 各観光エリアお問い合わせ —</div>${grid(2,['大山町エリア｜大山町観光案内所 0859-52-2502','伯耆町エリア｜伯耆町観光案内所 0859-68-5001','…','…'].map(t=>`<div class="box" style="font-size:13px">${t}</div>`))}`,n:'エリア詳細の下部にも同じデータを表示（1か所で管理）。',src:'/contact_kanko/'},
+  {h:`<div class="lbl">— お問い合わせフォーム —</div><div class="box" style="background:#FFF9EA;border-color:#EBD9A6;font-size:12px">観光に関するご質問・パンフレット送付は受け付けていません → 各観光エリアお問い合わせ先へ</div><div class="grid" style="grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">${['お名前','メールアドレス','電話番号','お問い合わせ種別','お問い合わせ内容'].map(f=>`<div class="field">${f}<b></b></div>`).join('')}</div><div style="margin-top:12px"><span class="btn dark">確認画面へ</span></div>`,src:'/contact/'},
+ ]},
+{id:'16',grp:'スポット',name:'スポット詳細（例：鍵掛峠展望台）',url:'/spot/kagikake-toge/',tpl:'詳細（CPT: spot）',
+ purpose:'プラン詳細のルート・特集のモデルコース・エリア詳細・地図のピンから来た人に、その場所の魅力と行き方を見せ、そこを通るプランへつなぐ。スポット名の検索の入口にもなる。',
+ blocks:[
+  {h:PH('スポットの写真（横長）',300,'border-radius:0'),flush:true,n:'写真は現サイトのタクシー立ち寄り先・刀剣たたら・温泉の写真を流用（差し替え予定）。クレジットは右下。'},
+  {h:`<div class="side2"><div><div class="lbl">SPOT ／ 江府町</div><div class="ttl">鍵掛峠展望台</div><div>${chips(['絶景','秋','水'])}</div><div style="margin-top:10px">${L(5)}</div></div><div class="box"><div class="lbl">INFO（入力例）</div><div class="kv" style="grid-template-columns:76px 1fr"><div>所在地</div><div>江府町 ○○</div><div>営業</div><div>○○</div><div>駐車場</div><div>○○</div><div>公式</div><div>江府町観光協会 ↗</div></div><div style="font-size:11px;color:var(--sub);margin-top:8px">情報確認日：2026.10.19／最新情報は公式サイトでご確認ください</div></div></div>`,n:'説明は現サイトの立ち寄り先の文章（35〜180字）をもとに200〜300字へ加筆。右の基本情報は入力された項目だけ表示（公開時は所在地・公式サイトが中心。住所・営業時間・料金・駐車場はこちらで公式サイトから調べて表にし、協議会の確認後に入力）。情報確認日を必ず表示し、年1回見直す。',src:'/taxi/各コースの立ち寄り先・/tatara/各市町村・/onsen/1〜7'},
+  {h:`<div class="lbl">MAP</div>${PH('地図（ピン1つ＋Googleマップで開く）',200)}`,n:'地図の位置はスポットDBの座標（住所から作成）。エリアのマップと同じ国土地理院の淡色地図。'},
+  {h:`<div class="lbl">PLAN</div><div class="h" style="margin-bottom:12px">ここに立ち寄る観光タクシー</div>${grid(3,['B-6 大山南壁 フォトジェニックな奥大山'].map(t=>card('写真',100,t,'4時間 ／ 15,000円')))}`,n:'このスポットをルートに含むプランを自動表示（プランの立ち寄り順データから逆引き）。'},
+  {h:`<div class="lbl">RELATED</div>${grid(3,['特集：水をめぐる旅','物語：水の物語','エリア：江府町'].map(t=>card('写真',100,t)))}<div class="lbl" style="margin-top:18px">NEARBY</div>${grid(4,['木谷沢渓流','御机の茅葺小屋','貝田の棚田','道の駅奥大山'].map(t=>card('写真',70,t)))}`,n:'同じ軸の特集・物語・エリアへ。近くのスポット（同じ市町村）を4件。'},
+  {h:`<div class="sp-note">SP：写真→名前・タグ→説明→基本情報（折りたたまず表示）→地図→プラン（横スクロール）。</div>`},
+ ]},
+
+];
+
+/* ============ 概要ページ ============ */
+function overview(){
+  const rows=P.filter(p=>!p.overview).map(p=>`<tr><td>${p.id}</td><td><a href="#${p.id}">${p.name}</a></td><td>${p.url}</td><td>${p.tpl}</td><td>${p.purpose}</td></tr>`).join('');
+  return `
+  <div class="pagebar"><h2>下層ページ WF ― 概要</h2><div class="meta">2026-10-19 作成。v2：気分・季節・テーマを検索結果＋特集記事に変更／v3：URLの決めごとを反映、スポット詳細（16）を追加、共通ヘッダー・フッターをトップに合わせた</div></div>
+  <div class="purpose"><b>前提</b>：トップデザイン（v2）と同じ部品・トンマナで下層を組む。PCレイアウトを基準に描き、SPの変化は各ページの緑の注記で示す。黄色の番号は右の注記と対応。「移行元」は現サイトのURL（詳細は「大山ワンダー_コンテンツ整理表.xlsx」）。</div>
+  <div class="ov"><h3>サイトマップ（企画書 6-3 をもとに整理）</h3><div class="tree">
+    <div class="l1">トップ</div>
+    <div class="l2">大山ワンダーとは</div>
+    <div class="l2">探す・めぐる：プラン一覧 → プラン詳細 → 予約フォーム</div>
+    <div class="l3">気分（7）／季節（4）／テーマ（5）は専用ページを作らず、プラン一覧の絞り込み（検索結果）で表示。条件が1つのときは特集記事の導入を上に出す</div>
+    <div class="l2">知る：物語一覧 → 物語詳細（水・森・信仰・鉄・海）</div>
+    <div class="l2">出会う：地域の人 一覧 → 詳細（5名〜）</div>
+    <div class="l2">エリア紹介 → エリア詳細（10市町村）</div>
+    <div class="l2">ジャーナル（特集・コラム・インタビュー・動画）／イベント／お知らせ（各 一覧・詳細）</div>
+    <div class="l2">アクセス／当サイトについて・プライバシーポリシー／各観光エリアお問い合わせ／山陰観光リンク／写真データ・レンタル／お問い合わせ</div>
+  </div></div>
+  <div class="ov"><h3>WordPress のデータ設計（案）</h3>
+    <table class="t"><tr><th>種別</th><th>名前</th><th>主な項目</th><th>件数（初期）</th></tr>
+    <tr><td>CPT</td><td>plan（観光タクシープラン）</td><td>コード・ジャンル・所要時間・出発条件・発着地・料金/通常料金・運休期間・特典・立ち寄りスポット（spotの並び）</td><td>23（＋未掲載1）</td></tr>
+    <tr><td>CPT</td><td>spot（スポット）</td><td>名称・よみ・説明・写真・市町村・地図座標・公式URL・（任意）住所・営業時間・料金・駐車場・情報確認日。詳細ページあり（/spot/…）。プランの立ち寄り順・特集のモデルコースから参照</td><td>約90（タクシー立ち寄り先・温泉・刀剣たたら）</td></tr>
+    <tr><td>CPT</td><td>story（物語）</td><td>本文・章・登場スポット・関連人物</td><td>5</td></tr>
+    <tr><td>CPT</td><td>person（地域の人）</td><td>氏名・肩書き・所属スポット・インタビュー本文</td><td>5〜</td></tr>
+    <tr><td>CPT</td><td>event（イベント）</td><td>開催期間・会場・エリア・料金・主催・外部URL</td><td>随時</td></tr>
+    <tr><td>投稿</td><td>journal / news</td><td>カテゴリ（読みもの：特集・コラム・インタビュー・動画／お知らせ：お知らせ・メディア掲載・事業者向け・重要）。特集は気分・季節・軸のタグ＋「検索結果に出す」＋動画URL。旧テーマ詳細の内容（モデルコース・動画・予約導線）は特集記事で持つ</td><td>移行 約20</td></tr>
+    <tr><td>タクソノミー</td><td>mood（気分）/ season（季節）/ area（市町村）</td><td>plan・spot・event・journalに共通で付与</td><td>7 / 4 / 10</td></tr>
+    <tr><td>タクソノミー</td><td>axis（つながりの軸）</td><td>水・森・神話・刀・発酵・海（スラッグ mizu / mori / shinwa / katana / hakko / umi）。物語・読みもの・プラン・スポットに共通で付与し、<b>プランの「テーマ」の絞り込みにもこのタグを使う</b>（テーマ専用の投稿タイプは作らない）。物語名は既存のまま（例：鉄の物語＝軸「刀」、信仰の物語＝軸「神話」）。専用一覧ページは作らず、各一覧の絞り込みで横断（/plan/?theme=…、/stories/?axis=…、/journal/?axis=…）</td><td>6</td></tr>
+    </table></div>
+  <div class="ov"><h3>テンプレート一覧（${P.length-1}）</h3><table class="t"><tr><th>No</th><th>ページ</th><th>URL（案）</th><th>テンプレート</th><th>目的</th></tr>${rows}</table></div>
+  <div class="ov"><h3>協議会・代理店に確認したいこと</h3><ol style="margin:0;padding-left:18px;font-size:13px;line-height:1.9">
+    <li>予約フォームの送信先（タクシー会社別に振り分け／現行フローを維持）。旧4言語フォームは日本語フォーム（項目は英語併記）へ転送する方針</li>
+    <li>スポット約90件の基本情報（住所・営業時間・料金・駐車場）の確認（こちらで公式サイトから調べた表を確認してもらう）</li>
+    <li>デジタルカタログ（鳥取旅ガイド 4言語）が今も配っている最新の冊子か</li>
+    <li>10市町村外を含むプラン（A-5 琴浦町、C-1・C-4 松江市美保関）のエリア表示</li>
+    <li>F-4（ご当地ソフト食べ比べ）の運行有無（現サイトの一覧に未掲載）</li>
+    <li>事業者向けお知らせ（酒蔵ツーリズムの過去記事）を新サイトに残すか</li>
+    <li>刀剣たたら特集の図版・画像（東京国立博物館、chiikimirai）の使用許諾</li>
+    <li>「地域の人」「森の物語」「海の物語」の取材・撮影スケジュール</li>
+  </ol></div>`;
+}
+
+/* ============ 描画 ============ */
+function renderSide(cur){
+  let html=`<h1>大山ワンダー 下層WF</h1><div class="ver">v3 ／ 2026-10-19</div>`;
+  let g='';
+  P.forEach(p=>{ if(p.grp!==g){g=p.grp;html+=`<div class="grp">${g}</div>`;} html+=`<a href="#${p.id}" class="${p.id===cur?'on':''}"><span class="id">${p.id}</span>${p.name}</a>`; });
+  document.getElementById('side').innerHTML=html;
+}
+function render(){
+  const id=(location.hash||'#00').slice(1);
+  const p=P.find(x=>x.id===id)||P[0];
+  renderSide(p.id);
+  const m=document.getElementById('main');
+  if(p.overview){ m.innerHTML=overview(); window.scrollTo(0,0); return; }
+  let k=0, notes='';
+  const body=p.blocks.map(b=>{
+    let pin='';
+    if(b.n||b.src){ k++; pin=`<div class="pin">${k}</div>`; notes+=`<div class="note"><span class="n">${k}</span>${b.n||''}${b.src?`<span class="src">移行元・参照：${b.src}</span>`:''}</div>`; }
+    return `<div class="blk${b.flush?' flush':''}">${pin}${b.h}</div>`;
+  }).join('');
+  m.innerHTML=`<div class="pagebar"><h2>${p.id}　${p.name}</h2><div class="meta">${p.url}<span class="tags"><span>${p.tpl}</span></span></div></div>
+  <div class="purpose"><b>このページの役割</b>　${p.purpose}</div>
+  <div class="stage"><div class="canvas">${GH}${p.id!=='01'?`<div class="bc">トップ ＞ ${p.name}</div>`:''}${body}${GF}</div><aside class="notes"><h3>NOTES</h3>${notes||'<div class="note">注記なし</div>'}</aside></div>`;
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',render);
+render();
+</script>
+</body>
+</html>
