@@ -158,7 +158,7 @@ const P = [
  blocks:[
   {h:PH('メイン写真（コースを代表する1枚）',300,'border-radius:0'),flush:true,n:'写真クレジットを右下に表示（トップと同じルール）。'},
   {h:`<div class="side2"><div><div>${chips(['A-2','NEW 2026','特典付き'])}</div><div class="ttl">童子切安綱を生んだ 伯耆安綱ゆかりの地めぐり</div><div style="font-size:13px;color:var(--sub)">天下五剣のひとつ「童子切安綱」を生んだ、伯耆国の刀工・安綱の足跡を辿る新ルート。</div><div style="margin-top:10px">${chips(['刀をめぐる旅','秋','5時間'])}</div></div><div class="box"><div class="lbl">PRICE</div><div style="font-size:24px">18,000円 <span style="font-size:12px;color:var(--sub)">通常 33,000円</span></div><div class="kv" style="grid-template-columns:80px 1fr;margin:10px 0"><div>発着</div><div>米子駅 → 米子駅／皆生温泉</div><div>出発</div><div>12時まで</div><div>人数</div><div>1台4名まで</div></div><span class="btn fill" style="width:100%;justify-content:center">このプランで予約する →</span><div style="font-size:11px;color:var(--sub);margin-top:6px">メール予約は利用日の30〜5日前まで</div></div></div>`,n:'右の予約ボックスはPCで追従（sticky）。SPは画面下に固定バー「予約する」。',src:'/taxi/s129/'},
-  {h:`<div class="lbl">ROUTE</div><div class="h" style="margin-bottom:14px">めぐるルート</div><div class="side2"><div class="tl">${['米子駅','伯耆安綱の碑','大山寺宝物館 霊宝閣（冬期閉館）','花ノ御前','道の駅 にちなん日野川の郷','日南町大原（下阿毘縁）','お菓子の壽城','米子駅または皆生温泉'].map((s,i)=>`<div class="stop" data-n="${i+1}">${PH('写真',80)}<div><b>${s}</b>${i&&i<7?L(2):''}<div style="font-size:11px;color:var(--accent)">${i&&i<7?'スポット詳細 →':''}</div></div></div>`).join('')}</div>${PH('ルート地図（立ち寄り先のピン＋線）',360)}</div>`,n:'立ち寄り先はスポットDB（CPT: spot）を順番に並べるだけで組める。説明文は現サイトの文章を流用し、事実確認のうえ整える。',src:'/taxi/s129/ 立ち寄り先8件'},
+  {h:`<div class="lbl">ROUTE</div><div class="h" style="margin-bottom:14px">めぐるルート</div><div class="side2"><div class="tl">${['米子駅','伯耆安綱の碑','大山寺宝物館 霊宝閣（冬期閉館）','花ノ御前','道の駅 にちなん日野川の郷','日南町大原（下阿毘縁）','お菓子の壽城','米子駅または皆生温泉'].map((s,i)=>`<div class="stop" data-n="${i+1}">${PH('写真',80)}<div><b>${s}</b>${i&&i<7?L(2):''}<div style="font-size:11px;color:var(--accent)">${i&&i<7?'公式サイト ↗':''}</div></div></div>`).join('')}</div>${PH('ルート地図（立ち寄り先のピン＋線）',360)}</div>`,n:'立ち寄り先はスポットDB（CPT: spot）を順番に並べるだけで組める。各スポットは写真・名前・短い説明＋公式サイトへの外部リンク（スポット単体のページは作らない）。説明文は現サイトの文章を流用し、事実確認のうえ整える。',src:'/taxi/s129/ 立ち寄り先8件'},
   {h:`<div class="box" style="background:#F4F7F7"><div class="lbl">SPECIAL</div><div class="side2"><div><b>乗車特典：声優・中村悠一さん語りの特別動画URL入りオリジナルカード</b>${L(2)}</div>${PH('YouTube埋め込み',120)}</div></div>`,n:'動画（伯耆国に眠る名刀の記憶）を埋め込み、物語「鉄の物語」へ送る。',src:'/blognews/y839/ ・ /5/'},
   {h:`<div class="lbl">RELATED STORY</div>${grid(3,['鉄の物語','特集：刀をめぐる旅','日南町（エリア）'].map(t=>card('サムネイル',110,t)))}`,n:'プラン→物語・特集（ジャーナル）・エリアへ。「点と点が繋がった物語」に触れさせる導線。'},
   {h:`<div class="lbl">OTHER PLANS</div>${grid(4,['A-3 開運祈願とたたら','D-2 開運神社めぐり(1)','A-1 米子城と城下町','G-1 オシドリ観察'].map(t=>card('写真',90,t,'4時間 ／ 15,000円')))}`,n:'同じテーマ・同じ発着地のプランを自動表示。'},
@@ -191,7 +191,7 @@ const P = [
   {h:PH('フルブリード写真＋「鉄の物語｜たたらが、暮らしと文化を育てた。」',360,'border-radius:0'),flush:true},
   {h:`<div style="max-width:640px;margin:0 auto"><div class="lbl">INTRODUCTION</div>${L(5)}</div>`,n:'本文幅は640px前後で読みやすく。'},
   {h:`<div style="max-width:640px;margin:0 auto"><div class="h">1. 日野川は「火の川」だった</div>${L(4)}${PH('写真（キャプション付き）',220)}<div class="h" style="margin-top:16px">2. たたら製鉄の流れ</div>${PH('図解：鉄穴流し→炭焼き→たたら操業→鉧出し→大鍛冶',180)}<div class="h" style="margin-top:16px">3. 砂が海に流れ、弓ヶ浜ができた</div>${L(3)}</div>`,n:'見出し付きの章立て。旧ページを章として再構成：[鉄]のプロローグ／奥日野のたたら製鉄／日本刀制作の工程／伯耆国と童子切安綱。図版・画像の使用許諾（TNM・chiikimirai）を確認。',src:'/rekishi/2/ /tatara/seitetsu/ /tatara/nihontou/ /tatara/yasutsuna/'},
-  {h:`<div style="max-width:640px;margin:0 auto" class="box"><div class="lbl">PLACES IN THIS STORY</div>${grid(3,['都合山たたら跡','船通山','弓ヶ浜'].map(t=>card('写真',70,t)))}</div>`,n:'物語に登場するスポット（スポットDB）。'},
+  {h:`<div style="max-width:640px;margin:0 auto" class="box"><div class="lbl">PLACES IN THIS STORY</div>${grid(3,['都合山たたら跡','船通山','弓ヶ浜'].map(t=>card('写真',70,t)))}</div>`,n:'物語に登場するスポット（スポットDB）。カードは公式サイトへの外部リンク。'},
   {h:`<div class="lbl">NEXT</div>${grid(3,['特集：刀をめぐる旅','人：たたらを伝える人','プラン：A-3'].map(t=>card('写真',100,t)))}<div class="row" style="justify-content:space-between;margin-top:16px;font-size:12px"><span>← 信仰の物語</span><span>海の物語 →</span></div>`,n:'前後の物語へ。水の流れの順（森→信仰→鉄→水→海）でつなぐ。'},
  ]},
 
@@ -225,7 +225,7 @@ const P = [
  blocks:[
   {h:PH('エリア写真＋「日野町｜たたらとオシドリの川」',280,'border-radius:0'),flush:true},
   {h:`<div class="side2"><div>${L(4)}</div>${PH('流域の中の位置（ミニ地図）',140)}</div>`,n:'流域の中での位置づけを一文で（例：日野川の中流、たたらで栄えた町）。',src:'/tatara/hino/ 冒頭'},
-  {h:`<div class="lbl">SPOT</div>${grid(4,['花ノ御前','都合山たたら跡','たたらの楽校 根雨楽舎','オシドリ観察小屋','金持神社'].map(t=>card('写真',90,t,'タグ')))}`,n:'スポットDB（area=日野町）。',src:'/tatara/hino/ スポット'},
+  {h:`<div class="lbl">SPOT</div>${grid(4,['花ノ御前','都合山たたら跡','たたらの楽校 根雨楽舎','オシドリ観察小屋','金持神社'].map(t=>card('写真',90,t,'タグ')))}`,n:'スポットDB（area=日野町）。カードは公式サイトへの外部リンク（スポット単体のページは作らない）。',src:'/tatara/hino/ スポット'},
   {h:`<div class="lbl">PLAN ／ STORY</div>${grid(3,['G-1 オシドリ観察と金運祈願','A-3 開運祈願とたたら','鉄の物語'].map(t=>card('写真',90,t)))}`},
   {h:`<div class="kv"><div>アクセス</div><div>大阪から車で3時間10分／岡山からJRで1時間50分 など</div><div>観光の問い合わせ</div><div>日野町 観光窓口（電話）</div><div>公式観光サイト</div><div>外部リンク</div></div>`,n:'各観光エリアお問い合わせ先・各観光協会リンクを移設。',src:'/contact_kanko/・トップの市町村リンク'},
   {h:`<div class="sp-note">素材あり：米子・伯耆・日野・日南・倉吉（刀剣たたら特集の市町別ページ）。新規執筆：境港・日吉津・大山・江府・南部。</div>`},
@@ -277,24 +277,13 @@ const P = [
   {h:`<div class="lbl">— 各観光エリアお問い合わせ —</div>${grid(2,['大山町エリア｜大山町観光案内所 0859-52-2502','伯耆町エリア｜伯耆町観光案内所 0859-68-5001','…','…'].map(t=>`<div class="box" style="font-size:13px">${t}</div>`))}`,n:'エリア詳細の下部にも同じデータを表示（1か所で管理）。',src:'/contact_kanko/'},
   {h:`<div class="lbl">— お問い合わせフォーム —</div><div class="box" style="background:#FFF9EA;border-color:#EBD9A6;font-size:12px">観光に関するご質問・パンフレット送付は受け付けていません → 各観光エリアお問い合わせ先へ</div><div class="grid" style="grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">${['お名前','メールアドレス','電話番号','お問い合わせ種別','お問い合わせ内容'].map(f=>`<div class="field">${f}<b></b></div>`).join('')}</div><div style="margin-top:12px"><span class="btn dark">確認画面へ</span></div>`,src:'/contact/'},
  ]},
-{id:'16',grp:'スポット',name:'スポット詳細（例：鍵掛峠展望台）',url:'/spot/kagikake-toge/',tpl:'詳細（CPT: spot）',
- purpose:'プラン詳細のルート・特集のモデルコース・エリア詳細・地図のピンから来た人に、その場所の魅力と行き方を見せ、そこを通るプランへつなぐ。スポット名の検索の入口にもなる。',
- blocks:[
-  {h:PH('スポットの写真（横長）',300,'border-radius:0'),flush:true,n:'写真は現サイトのタクシー立ち寄り先・刀剣たたら・温泉の写真を流用（差し替え予定）。クレジットは右下。'},
-  {h:`<div class="side2"><div><div class="lbl">SPOT ／ 江府町</div><div class="ttl">鍵掛峠展望台</div><div>${chips(['絶景','秋','水'])}</div><div style="margin-top:10px">${L(5)}</div></div><div class="box"><div class="lbl">INFO（入力例）</div><div class="kv" style="grid-template-columns:76px 1fr"><div>所在地</div><div>江府町 ○○</div><div>営業</div><div>○○</div><div>駐車場</div><div>○○</div><div>公式</div><div>江府町観光協会 ↗</div></div><div style="font-size:11px;color:var(--sub);margin-top:8px">情報確認日：2026.10.19／最新情報は公式サイトでご確認ください</div></div></div>`,n:'説明は現サイトの立ち寄り先の文章（35〜180字）をもとに200〜300字へ加筆。右の基本情報は入力された項目だけ表示（公開時は所在地・公式サイトが中心。住所・営業時間・料金・駐車場はこちらで公式サイトから調べて表にし、協議会の確認後に入力）。情報確認日を必ず表示し、年1回見直す。',src:'/taxi/各コースの立ち寄り先・/tatara/各市町村・/onsen/1〜7'},
-  {h:`<div class="lbl">MAP</div>${PH('地図（ピン1つ＋Googleマップで開く）',200)}`,n:'地図の位置はスポットDBの座標（住所から作成）。エリアのマップと同じ国土地理院の淡色地図。'},
-  {h:`<div class="lbl">PLAN</div><div class="h" style="margin-bottom:12px">ここに立ち寄る観光タクシー</div>${grid(3,['B-6 大山南壁 フォトジェニックな奥大山'].map(t=>card('写真',100,t,'4時間 ／ 15,000円')))}`,n:'このスポットをルートに含むプランを自動表示（プランの立ち寄り順データから逆引き）。'},
-  {h:`<div class="lbl">RELATED</div>${grid(3,['特集：水をめぐる旅','物語：水の物語','エリア：江府町'].map(t=>card('写真',100,t)))}<div class="lbl" style="margin-top:18px">NEARBY</div>${grid(4,['木谷沢渓流','御机の茅葺小屋','貝田の棚田','道の駅奥大山'].map(t=>card('写真',70,t)))}`,n:'同じ軸の特集・物語・エリアへ。近くのスポット（同じ市町村）を4件。'},
-  {h:`<div class="sp-note">SP：写真→名前・タグ→説明→基本情報（折りたたまず表示）→地図→プラン（横スクロール）。</div>`},
- ]},
-
 ];
 
 /* ============ 概要ページ ============ */
 function overview(){
   const rows=P.filter(p=>!p.overview).map(p=>`<tr><td>${p.id}</td><td><a href="#${p.id}">${p.name}</a></td><td>${p.url}</td><td>${p.tpl}</td><td>${p.purpose}</td></tr>`).join('');
   return `
-  <div class="pagebar"><h2>下層ページ WF ― 概要</h2><div class="meta">2026-10-19 作成。v2：気分・季節・テーマを検索結果＋特集記事に変更／v3：URLの決めごとを反映、スポット詳細（16）を追加、共通ヘッダー・フッターをトップに合わせた</div></div>
+  <div class="pagebar"><h2>下層ページ WF ― 概要</h2><div class="meta">2026-10-19 作成。v2：気分・季節・テーマを検索結果＋特集記事に変更／v3：URLの決めごとを反映、共通ヘッダー・フッターをトップに合わせた／v3.1：スポット詳細ページは作らないことにし、16を削除（スポットは公式サイトへのリンク）</div></div>
   <div class="purpose"><b>前提</b>：トップデザイン（v2）と同じ部品・トンマナで下層を組む。PCレイアウトを基準に描き、SPの変化は各ページの緑の注記で示す。黄色の番号は右の注記と対応。「移行元」は現サイトのURL（詳細は「大山ワンダー_コンテンツ整理表.xlsx」）。</div>
   <div class="ov"><h3>サイトマップ（企画書 6-3 をもとに整理）</h3><div class="tree">
     <div class="l1">トップ</div>
@@ -310,7 +299,7 @@ function overview(){
   <div class="ov"><h3>WordPress のデータ設計（案）</h3>
     <table class="t"><tr><th>種別</th><th>名前</th><th>主な項目</th><th>件数（初期）</th></tr>
     <tr><td>CPT</td><td>plan（観光タクシープラン）</td><td>コード・ジャンル・所要時間・出発条件・発着地・料金/通常料金・運休期間・特典・立ち寄りスポット（spotの並び）</td><td>23（＋未掲載1）</td></tr>
-    <tr><td>CPT</td><td>spot（スポット）</td><td>名称・よみ・説明・写真・市町村・地図座標・公式URL・（任意）住所・営業時間・料金・駐車場・情報確認日。詳細ページあり（/spot/…）。プランの立ち寄り順・特集のモデルコースから参照</td><td>約90（タクシー立ち寄り先・温泉・刀剣たたら）</td></tr>
+    <tr><td>CPT</td><td>spot（スポット）</td><td>名称・よみ・短い説明・写真・市町村・地図座標・公式サイトURL。<b>単体のページは作らない</b>（公開URLなし。表示は公式サイトへの外部リンク）。プランの立ち寄り順・特集のモデルコース・エリア・物語から参照</td><td>約90（タクシー立ち寄り先・温泉・刀剣たたら）</td></tr>
     <tr><td>CPT</td><td>story（物語）</td><td>本文・章・登場スポット・関連人物</td><td>5</td></tr>
     <tr><td>CPT</td><td>person（地域の人）</td><td>氏名・肩書き・所属スポット・インタビュー本文</td><td>5〜</td></tr>
     <tr><td>CPT</td><td>event（イベント）</td><td>開催期間・会場・エリア・料金・主催・外部URL</td><td>随時</td></tr>
@@ -321,7 +310,7 @@ function overview(){
   <div class="ov"><h3>テンプレート一覧（${P.length-1}）</h3><table class="t"><tr><th>No</th><th>ページ</th><th>URL（案）</th><th>テンプレート</th><th>目的</th></tr>${rows}</table></div>
   <div class="ov"><h3>協議会・代理店に確認したいこと</h3><ol style="margin:0;padding-left:18px;font-size:13px;line-height:1.9">
     <li>予約フォームの送信先（タクシー会社別に振り分け／現行フローを維持）。旧4言語フォームは日本語フォーム（項目は英語併記）へ転送する方針</li>
-    <li>スポット約90件の基本情報（住所・営業時間・料金・駐車場）の確認（こちらで公式サイトから調べた表を確認してもらう）</li>
+    
     <li>デジタルカタログ（鳥取旅ガイド 4言語）が今も配っている最新の冊子か</li>
     <li>10市町村外を含むプラン（A-5 琴浦町、C-1・C-4 松江市美保関）のエリア表示</li>
     <li>F-4（ご当地ソフト食べ比べ）の運行有無（現サイトの一覧に未掲載）</li>
