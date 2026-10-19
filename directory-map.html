@@ -119,7 +119,7 @@ table.rd tr.dim td{color:#5E6B74}
 <div class="app">
 <nav class="side" aria-label="目次">
   <h1>大山ワンダー<br>ディレクトリマップ</h1>
-  <div class="ver">v3.1 ／ 2026-10-19</div>
+  <div class="ver">v3.2 ／ 2026-10-19</div>
   <div class="grp">VIEW</div>
   <a href="#summary">概要とURLのルール</a>
   <a href="#tree">サイトツリー</a>
@@ -134,17 +134,17 @@ table.rd tr.dim td{color:#5E6B74}
 </nav>
 <main>
   <section id="summary">
-    <div class="pagebar"><h2>概要とURLのルール</h2><div class="meta">v3.1：プラン一覧（検索結果を含む）を静的HTML化。v3：URLの決めごとをすべて反映、スポット詳細・Language・デジタルカタログを追加（下層WF v3 と対応）</div></div>
+    <div class="pagebar"><h2>概要とURLのルール</h2><div class="meta">v3.2：スポット詳細ページを作らないことにした（スポットは公式サイトへのリンク）。v3.1：プラン一覧（検索結果を含む）を静的HTML化。v3：URLの決めごとをすべて反映、スポット詳細・Language・デジタルカタログを追加（下層WF v3 と対応）</div></div>
     <div class="purpose"><b>このマップの役割</b>　新サイトの全ページを、URL・WFのテンプレート番号・WordPressの種別とテンプレートファイル・静的HTMLのファイル・現サイトの移行元と一緒に一覧にしたもの。下層の制作（静的HTML → WP）とリダイレクト設定の基準にする。黄色の「要確認」は下の「確認待ち」と対応。</div>
     <div class="stats">
-      <div><b>86</b><span>行（ページ・ページ群）</span></div>
+      <div><b>85</b><span>行（ページ・ページ群）</span></div>
       <div><b>24</b><span>プラン詳細（F-4を含む）</span></div>
-      <div><b>24</b><span>WPテンプレートファイル</span></div>
+      <div><b>23</b><span>WPテンプレートファイル</span></div>
       <div><b>119</b><span>旧URLの301転送</span></div>
     </div>
     <div class="legend">
       <span class="st st-done">静的HTML済 5</span>
-      <span class="st st-wf">WF済・未制作 73</span>
+      <span class="st st-wf">WF済・未制作 72</span>
       <span class="st st-new">WF未作成 7</span>
       <span class="st st-ask">要確認 1</span>
     </div>
@@ -271,8 +271,6 @@ table.rd tr.dim td{color:#5E6B74}
 </li>
 </ul></div>
 <div class="t-grp"><div class="t-grp-h">システム</div><ul>
-<li><span class="tnode st-wf"><span class="tname">スポット詳細</span><code>/spot/｛スラッグ｝/</code><span class="tcount">約90</span></span>
-</li>
 <li><span class="tnode st-new"><span class="tname">404（ページが見つかりません）</span><code>—</code></span>
 </li>
 <li><span class="tnode st-new"><span class="tname">XMLサイトマップ</span><code>/wp-sitemap.xml</code></span>
@@ -382,7 +380,6 @@ table.rd tr.dim td{color:#5E6B74}
 <tr data-st="new"><td class="id">16-1</td><td class="nm" style="padding-left:40px">└ お問い合わせ：確認</td><td class="url"><code>/contact/confirm/</code></td><td class="c">15</td><td>固定ページ（子）</td><td><code>page-contact.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-new">WF未作成</span></td><td class="note">noindex</td></tr>
 <tr data-st="new"><td class="id">16-2</td><td class="nm" style="padding-left:40px">└ お問い合わせ：送信完了</td><td class="url"><code>/contact/thanks/</code></td><td class="c">15</td><td>固定ページ（子）</td><td><code>page-contact.php</code></td><td><code></code></td><td class="src"></td><td><span class="st st-new">WF未作成</span></td><td class="note">noindex</td></tr>
 <tr class="grp-row" id="g-6"><th colspan="10">システム</th></tr>
-<tr data-st="wf"><td class="id">17</td><td class="nm" style="padding-left:24px">スポット詳細 <span class="tcount">約90</span></td><td class="url"><code>/spot/｛スラッグ｝/</code></td><td class="c">16</td><td>詳細（CPT: spot）</td><td><code>single-spot.php</code></td><td><code>spot/sample/index.html（代表）</code></td><td class="src">/onsen/1〜7・/tatara/各市町村・タクシー立ち寄り先</td><td><span class="st st-wf">WF済・未制作</span></td><td class="note">公開時は軽い詳細ページ：写真・説明・市町村・地図・公式サイト・このスポットを通るプラン・関連する特集と物語。住所・営業時間・料金・駐車場は欄だけ用意し、入力された項目だけ表示（情報確認日つき）。基本情報はこちらで公式サイトから調べて表にし、協議会に確認してもらう</td></tr>
 <tr data-st="new"><td class="id">18</td><td class="nm" style="padding-left:24px">404（ページが見つかりません）</td><td class="url"><code>—</code></td><td class="c">—</td><td>システム</td><td><code>404.php</code></td><td><code>404.html</code></td><td class="src"></td><td><span class="st st-new">WF未作成</span></td><td class="note">検索の代わりに主な入口（プラン・物語・エリア）を出す</td></tr>
 <tr data-st="new"><td class="id">19</td><td class="nm" style="padding-left:24px">XMLサイトマップ</td><td class="url"><code>/wp-sitemap.xml</code></td><td class="c">—</td><td>システム（WP標準）</td><td><code>—</code></td><td><code></code></td><td class="src">/sitemap/（HTML版）は廃止</td><td><span class="st st-new">WF未作成</span></td><td class="note">HTMLのサイトマップページは作らない。確認・完了画面と転送用のURLは除外</td></tr>
 </tbody></table></div>
@@ -449,13 +446,13 @@ table.rd tr.dim td{color:#5E6B74}
 <tr><td class="c">55</td><td><code>/rekishi/2/</code></td><td>[鉄]のプロローグ</td><td>再編集</td><td><code>/stories/iron/</code></td><td>301</td></tr>
 <tr><td class="c">56</td><td><code>/rekishi/3/</code></td><td>[水]のプロローグ</td><td>再編集</td><td><code>/stories/water/</code></td><td>301</td></tr>
 <tr><td class="c">57</td><td><code>/onsen/</code></td><td>海・山、どちらの名湯を楽しむ？</td><td>再編集</td><td><code>/journal/onsen/</code></td><td>301</td></tr>
-<tr><td class="c">58</td><td><code>/onsen/1/</code></td><td>皆生温泉</td><td>再編集</td><td><code>/spot/｛温泉のスラッグ｝/</code></td><td>301</td></tr>
-<tr><td class="c">59</td><td><code>/onsen/2/</code></td><td>大山ロイヤルホテル（大山温泉）</td><td>再編集</td><td><code>/spot/｛温泉のスラッグ｝/</code></td><td>301</td></tr>
-<tr><td class="c">60</td><td><code>/onsen/3/</code></td><td>大山レークホテル（大山伽羅温泉）</td><td>再編集</td><td><code>/spot/｛温泉のスラッグ｝/</code></td><td>301</td></tr>
-<tr><td class="c">61</td><td><code>/onsen/4/</code></td><td>淀江ゆめ温泉</td><td>再編集</td><td><code>/spot/｛温泉のスラッグ｝/</code></td><td>301</td></tr>
-<tr><td class="c">62</td><td><code>/onsen/5/</code></td><td>沸くわく天然温泉 ラピスパ</td><td>再編集</td><td><code>/spot/｛温泉のスラッグ｝/</code></td><td>301</td></tr>
-<tr><td class="c">63</td><td><code>/onsen/6/</code></td><td>中山温泉 ゆーゆー倶楽部NASPAL</td><td>再編集</td><td><code>/spot/｛温泉のスラッグ｝/</code></td><td>301</td></tr>
-<tr><td class="c">64</td><td><code>/onsen/7/</code></td><td>岸本温泉 ゆうあい・パル</td><td>再編集</td><td><code>/spot/｛温泉のスラッグ｝/</code></td><td>301</td></tr>
+<tr><td class="c">58</td><td><code>/onsen/1/</code></td><td>皆生温泉</td><td>再編集</td><td><code>/journal/onsen/</code></td><td>301（温泉の特集記事へ集約）</td></tr>
+<tr><td class="c">59</td><td><code>/onsen/2/</code></td><td>大山ロイヤルホテル（大山温泉）</td><td>再編集</td><td><code>/journal/onsen/</code></td><td>301（温泉の特集記事へ集約）</td></tr>
+<tr><td class="c">60</td><td><code>/onsen/3/</code></td><td>大山レークホテル（大山伽羅温泉）</td><td>再編集</td><td><code>/journal/onsen/</code></td><td>301（温泉の特集記事へ集約）</td></tr>
+<tr><td class="c">61</td><td><code>/onsen/4/</code></td><td>淀江ゆめ温泉</td><td>再編集</td><td><code>/journal/onsen/</code></td><td>301（温泉の特集記事へ集約）</td></tr>
+<tr><td class="c">62</td><td><code>/onsen/5/</code></td><td>沸くわく天然温泉 ラピスパ</td><td>再編集</td><td><code>/journal/onsen/</code></td><td>301（温泉の特集記事へ集約）</td></tr>
+<tr><td class="c">63</td><td><code>/onsen/6/</code></td><td>中山温泉 ゆーゆー倶楽部NASPAL</td><td>再編集</td><td><code>/journal/onsen/</code></td><td>301（温泉の特集記事へ集約）</td></tr>
+<tr><td class="c">64</td><td><code>/onsen/7/</code></td><td>岸本温泉 ゆうあい・パル</td><td>再編集</td><td><code>/journal/onsen/</code></td><td>301（温泉の特集記事へ集約）</td></tr>
 <tr><td class="c">65</td><td><code>/12/</code></td><td>登山を楽しもう</td><td>再編集</td><td><code>/guide/tozan/</code></td><td>301</td></tr>
 <tr><td class="c">66</td><td><code>/12/1/</code></td><td>大山の気候</td><td>統合</td><td><code>/guide/tozan/</code></td><td>301</td></tr>
 <tr><td class="c">67</td><td><code>/12/2/</code></td><td>登山の心得</td><td>統合</td><td><code>/guide/tozan/</code></td><td>301</td></tr>
@@ -527,9 +524,9 @@ table.rd tr.dim td{color:#5E6B74}
 
   <section id="questions">
     <div class="pagebar"><h2>確認待ちと決定済み</h2><div class="meta">URLまわりの決めごとはすべて決定済み。残りは協議会・代理店への確認</div></div>
-    <ol class="qs"><li><b>デジタルカタログ（協議会）</b><p>「鳥取旅ガイド 大山山麓 日野川流域」が今も配っている最新の冊子か。古い場合はリンクを外す。</p></li><li><b>スポットの基本情報（協議会）</b><p>スポット約90件の住所・営業時間・料金・駐車場を、こちらで公式サイトから調べて表にするので、その内容を確認してもらう。</p></li><li><b>予約フォームの送信先（協議会）</b><p>タクシー会社別に振り分けるか、現行の受付フローを維持するか。</p></li><li><b>F-4 の運行（協議会）</b><p>現サイトの一覧に未掲載の「ご当地ソフト食べ比べ」を載せるか。</p></li></ol>
+    <ol class="qs"><li><b>デジタルカタログ（協議会）</b><p>「鳥取旅ガイド 大山山麓 日野川流域」が今も配っている最新の冊子か。古い場合はリンクを外す。</p></li><li><b>予約フォームの送信先（協議会）</b><p>タクシー会社別に振り分けるか、現行の受付フローを維持するか。</p></li><li><b>F-4 の運行（協議会）</b><p>現サイトの一覧に未掲載の「ご当地ソフト食べ比べ」を載せるか。</p></li></ol>
     <div class="pagebar" style="margin-top:28px"><h2 style="font-size:18px">決定済み</h2></div>
-    <ul class="qs done"><li><b>多言語フォーム・外国語対応</b><p>A（2026-10-19）：外国語版のフォーム・サイトは作らない（企画書の範囲外。p.14 で海外旅行者は将来のターゲットとして「視野に入れる」）。日本語の予約フォームの項目名に英語を併記し、旧4言語フォーム（/reserve_taxi/en/ ほか）はここへ301。<code>/other-languages/</code> は「Language ／ 外国の方へ」の短い案内ページ（4言語：デジタルカタログ、予約フォームの使い方、タクシー会社の電話、ブラウザの翻訳機能）に作り直す。</p></li><li><b>デジタルカタログ</b><p>A：ビューアのファイル（<code>/system/digitalcatalog/</code>）を新サーバーにそのまま残し、<code>/digitalcatalog/</code> は4言語（日本語・英語・繁体字・韓国語）へのリンクを並べた小さな固定ページに作り直す。フッターからリンク（2026-10-19）。今の冊子が最新かは協議会に確認。</p></li><li><b>登山ガイド</b><p>固定ページ <code>/guide/tozan/</code> で新設（2026-10-19）。旧 /12/ の安全情報7ページを集約し、検索結果「登山」から案内。</p></li><li><b>地域の人のURL</b><p>職種＋通し番号（2026-10-19）：<code>/people/brewer-01/</code> <code>/people/fisher-01/</code>。個人情報の観点から氏名をURLに入れない。ページの名前は「表示名」として入力し、氏名を出さない人は「酒蔵の蔵人」などの呼び名にする。顔写真も本人の許可で決め、後ろ姿や手元でも組める構成に。一覧の絞り込みは <code>/people/?job=brewer</code>。トップの仮リンクも変更済み。</p></li><li><b>フォームの確認・完了画面</b><p>子ページにする（2026-10-19）：<code>/plan/reserve/confirm/</code> <code>/plan/reserve/thanks/</code> <code>/contact/confirm/</code> <code>/contact/thanks/</code>。完了画面の表示回数で予約リクエスト数を計測する。確認・完了画面は noindex。フォームの仕組みはページを分けられるもの（MW WP Form、または Contact Form 7＋完了画面への移動設定）。</p></li><li><b>記事・イベント・お知らせのURL</b><p>種類のあとに記事のスラッグ（2026-10-19）：<code>/journal/daisen-water/</code> <code>/event/beer-festa-2026/</code> <code>/news/new-route-mizu/</code>。入稿ルール：スラッグは半角英数とハイフンで3語程度まで、イベントは末尾に開催年。トップの仮リンクもこの形に変更済み。</p></li><li><b>スポット詳細ページ</b><p>作る（2026-10-19）。公開時は写真・説明・市町村・地図・公式サイト・関連するプラン／特集／物語の軽い詳細ページ。住所・営業時間・料金・駐車場は欄を用意し、入力されたものだけ表示（情報確認日つき、年1回見直し）。基本情報はこちらで公式サイトから調べて表を作り、協議会に確認してもらう。</p></li><li><b>特集記事のスラッグ</b><p>テーマ（軸）の特集は軸と同じ綴り（<code>/journal/katana/</code> <code>hakko</code> <code>mizu</code> <code>shinwa</code> <code>umi</code>）。季節・気分の特集は内容を表す英数の短い言葉（<code>/journal/autumn-leaves/</code> <code>/journal/winter-daisen/</code> <code>/journal/onsen/</code>）。毎年増える季節ものでも名前がぶつからないようにするため（2026-10-19）。</p></li><li><b>URLの言語</b><p>今のスラッグで確定（2026-10-19）。地名はローマ字、それ以外は今の綴りを正とする（気分 zekkei / gourmet / onsen / tozan / drive / family / rain、季節 spring〜winter、軸 mizu / mori / shinwa / katana / hakko / umi、物語 forest / faith / iron / water / sea、地域の人 brewer など）。</p></li><li><b>気分・季節・テーマは検索結果に集約</b><p>専用ページ（/discover/ /season/ /theme/）は作らず、すべて <code>/plan/?mood= ?season= ?theme=</code> の検索結果にする。トップ・メニュー・フッターのリンクも変更済み（59か所）。</p></li><li><b>読み物は特集記事（ジャーナルの投稿）</b><p>旧テーマ詳細・気分・季節に載せる予定だった素材（たたら特集、酒蔵、温泉、紅葉動画、スキーなど）は、ジャーナルの記事の種類「特集」として書く。条件が1つの検索結果では、その条件の特集の導入（アイキャッチ・抜粋・動画・「特集を読む」）を一覧の上に出す。</p></li><li><b>テーマ＝つながりの軸</b><p>テーマ専用の投稿タイプは作らず、軸のタグで絞り込む。軸のスラッグは <code>mizu / mori / shinwa / katana / hakko / umi</code> に統一（トップのジャーナルのリンクも <code>?axis=mizu</code> などに変更済み）。プラン一覧では <code>?theme=</code>、ジャーナル・物語では <code>?axis=</code> という名前で同じ値を使う。</p></li></ul>
+    <ul class="qs done"><li><b>多言語フォーム・外国語対応</b><p>A（2026-10-19）：外国語版のフォーム・サイトは作らない（企画書の範囲外。p.14 で海外旅行者は将来のターゲットとして「視野に入れる」）。日本語の予約フォームの項目名に英語を併記し、旧4言語フォーム（/reserve_taxi/en/ ほか）はここへ301。<code>/other-languages/</code> は「Language ／ 外国の方へ」の短い案内ページ（4言語：デジタルカタログ、予約フォームの使い方、タクシー会社の電話、ブラウザの翻訳機能）に作り直す。</p></li><li><b>デジタルカタログ</b><p>A：ビューアのファイル（<code>/system/digitalcatalog/</code>）を新サーバーにそのまま残し、<code>/digitalcatalog/</code> は4言語（日本語・英語・繁体字・韓国語）へのリンクを並べた小さな固定ページに作り直す。フッターからリンク（2026-10-19）。今の冊子が最新かは協議会に確認。</p></li><li><b>登山ガイド</b><p>固定ページ <code>/guide/tozan/</code> で新設（2026-10-19）。旧 /12/ の安全情報7ページを集約し、検索結果「登山」から案内。</p></li><li><b>地域の人のURL</b><p>職種＋通し番号（2026-10-19）：<code>/people/brewer-01/</code> <code>/people/fisher-01/</code>。個人情報の観点から氏名をURLに入れない。ページの名前は「表示名」として入力し、氏名を出さない人は「酒蔵の蔵人」などの呼び名にする。顔写真も本人の許可で決め、後ろ姿や手元でも組める構成に。一覧の絞り込みは <code>/people/?job=brewer</code>。トップの仮リンクも変更済み。</p></li><li><b>フォームの確認・完了画面</b><p>子ページにする（2026-10-19）：<code>/plan/reserve/confirm/</code> <code>/plan/reserve/thanks/</code> <code>/contact/confirm/</code> <code>/contact/thanks/</code>。完了画面の表示回数で予約リクエスト数を計測する。確認・完了画面は noindex。フォームの仕組みはページを分けられるもの（MW WP Form、または Contact Form 7＋完了画面への移動設定）。</p></li><li><b>記事・イベント・お知らせのURL</b><p>種類のあとに記事のスラッグ（2026-10-19）：<code>/journal/daisen-water/</code> <code>/event/beer-festa-2026/</code> <code>/news/new-route-mizu/</code>。入稿ルール：スラッグは半角英数とハイフンで3語程度まで、イベントは末尾に開催年。トップの仮リンクもこの形に変更済み。</p></li><li><b>スポット詳細ページ</b><p><b>作らない</b>（2026-10-19 見直し）。今のサイトにもスポット単体のページはなく、各コースのページに写真と短い説明、公式サイト・観光サイトへの外部リンクがあるだけ。新サイトも、スポットはプラン詳細・特集・エリア・物語の中に写真・名前・短い説明＋公式サイトへのリンクで載せる。データはスポットDB（CPT: spot、単体ページなし）で1件ずつ管理して使い回す。住所・営業時間などの基本情報は載せない。旧 /onsen/ の7ページは温泉の特集記事 <code>/journal/onsen/</code> に集約。</p></li><li><b>特集記事のスラッグ</b><p>テーマ（軸）の特集は軸と同じ綴り（<code>/journal/katana/</code> <code>hakko</code> <code>mizu</code> <code>shinwa</code> <code>umi</code>）。季節・気分の特集は内容を表す英数の短い言葉（<code>/journal/autumn-leaves/</code> <code>/journal/winter-daisen/</code> <code>/journal/onsen/</code>）。毎年増える季節ものでも名前がぶつからないようにするため（2026-10-19）。</p></li><li><b>URLの言語</b><p>今のスラッグで確定（2026-10-19）。地名はローマ字、それ以外は今の綴りを正とする（気分 zekkei / gourmet / onsen / tozan / drive / family / rain、季節 spring〜winter、軸 mizu / mori / shinwa / katana / hakko / umi、物語 forest / faith / iron / water / sea、地域の人 brewer など）。</p></li><li><b>気分・季節・テーマは検索結果に集約</b><p>専用ページ（/discover/ /season/ /theme/）は作らず、すべて <code>/plan/?mood= ?season= ?theme=</code> の検索結果にする。トップ・メニュー・フッターのリンクも変更済み（59か所）。</p></li><li><b>読み物は特集記事（ジャーナルの投稿）</b><p>旧テーマ詳細・気分・季節に載せる予定だった素材（たたら特集、酒蔵、温泉、紅葉動画、スキーなど）は、ジャーナルの記事の種類「特集」として書く。条件が1つの検索結果では、その条件の特集の導入（アイキャッチ・抜粋・動画・「特集を読む」）を一覧の上に出す。</p></li><li><b>テーマ＝つながりの軸</b><p>テーマ専用の投稿タイプは作らず、軸のタグで絞り込む。軸のスラッグは <code>mizu / mori / shinwa / katana / hakko / umi</code> に統一（トップのジャーナルのリンクも <code>?axis=mizu</code> などに変更済み）。プラン一覧では <code>?theme=</code>、ジャーナル・物語では <code>?axis=</code> という名前で同じ値を使う。</p></li></ul>
   </section>
 </main>
 </div>
