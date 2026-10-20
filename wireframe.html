@@ -153,7 +153,7 @@ const P = [
   {h:`<div class="sp-note">SP：条件バーは「条件で絞り込む」ボタン→下からシート（出発地・到着地・ご利用日と、気分・季節・テーマ・所要時間のチップ）。カードは1列。特集の紹介は一覧の下で写真を上にして1列。</div>`},
  ]},
 {id:'03',grp:'探す・めぐる',name:'プラン詳細',url:'/plan/a-2/',tpl:'詳細（CPT: plan）',
- purpose:'コースの魅力と立ち寄り先を見せ、そのまま予約フォームへ。スポット情報はスポットDBから呼び出す。',
+ purpose:'コースの魅力と立ち寄り先を見せ、そのまま予約フォームへ。スポット情報はスポットDBから呼び出す。<b>予約の確定についての注意書き</b>（「自動返信メールの時点では予約は確定していません。タクシー会社からの予約完了メールで確定します」）を予約ボックスの「予約する」ボタンのそば（スマホは固定バーの上）に出す（一覧・詳細・確認・完了の4画面で共通の部品、2026-10-20 代理店指摘）。',
  blocks:[
   {h:PH('メイン写真（コースを代表する1枚）',300,'border-radius:0'),flush:true,n:'写真クレジットを右下に表示（トップと同じルール）。'},
   {h:`<div class="side2"><div><div>${chips(['A-2','NEW 2026','特典付き'])}</div><div class="ttl">童子切安綱を生んだ 伯耆安綱ゆかりの地めぐり</div><div style="font-size:13px;color:var(--sub)">天下五剣のひとつ「童子切安綱」を生んだ、伯耆国の刀工・安綱の足跡を辿る新ルート。</div><div style="margin-top:10px">${chips(['刀をめぐる旅','秋','5時間'])}</div></div><div class="box"><div class="lbl">PRICE</div><div style="font-size:24px">18,000円 <span style="font-size:12px;color:var(--sub)">通常 33,000円</span></div><div class="kv" style="grid-template-columns:80px 1fr;margin:10px 0"><div>発着</div><div>米子駅 → 米子駅／皆生温泉</div><div>出発</div><div>12時まで</div><div>人数</div><div>1台4名まで</div></div><span class="btn fill" style="width:100%;justify-content:center">このプランで予約する →</span><div style="font-size:11px;color:var(--sub);margin-top:6px">メール予約は利用日の30〜5日前まで</div></div></div>`,n:'右の予約ボックスはPCで追従（sticky）。SPは画面下に固定バー「予約する」。',src:'/taxi/s129/'},
@@ -165,7 +165,7 @@ const P = [
  ]},
 
 {id:'04',grp:'探す・めぐる',name:'予約フォーム',url:'/plan/reserve/',tpl:'フォーム（3ステップ）',
- purpose:'迷わず予約リクエストを送れること。プラン詳細から来た場合はコース・発着地を自動入力。',
+ purpose:'迷わず予約リクエストを送れること。プラン詳細から来た場合はコース・発着地を自動入力。<b>予約の確定についての注意書き</b>（「自動返信メールの時点では予約は確定していません。タクシー会社からの予約完了メールで確定します」）を入力画面の上・確認画面の送信ボタンの直前・完了画面のいちばん上に出す（一覧・詳細と共通の部品、2026-10-20 代理店指摘）。',
  blocks:[
   {h:`<div class="steps"><div class="on">1. 内容の入力</div><div>2. 確認</div><div>3. 送信完了</div></div>`,n:'現行フォームの項目は維持し、3ステップに分ける。'},
   {h:`<div class="box" style="background:#FFF9EA;border-color:#EBD9A6;font-size:12.5px"><b>ご予約の前に</b><ul style="margin:6px 0 0;padding-left:18px"><li>メール予約は利用日の30日前〜5日前まで（4日前以降はお電話で）</li><li>自動返信メールの時点では予約は完了していません。タクシー会社からの完了メールで確定します</li><li>料金はご利用時にドライバーへお支払いください（3時間12,000円／4時間15,000円／5時間18,000円）</li></ul></div>`,n:'注意事項は短く要点だけ。詳細はアコーディオン。',src:'/reserve_taxi/ 注意事項'},
@@ -282,7 +282,7 @@ const P = [
 function overview(){
   const rows=P.filter(p=>!p.overview).map(p=>`<tr><td>${p.id}</td><td><a href="#${p.id}">${p.name}</a></td><td>${p.url}</td><td>${p.tpl}</td><td>${p.purpose}</td></tr>`).join('');
   return `
-  <div class="pagebar"><h2>下層ページ WF ― 概要</h2><div class="meta">2026-10-19 作成。v2：気分・季節・テーマを検索結果＋特集記事に変更／v3：URLの決めごとを反映、共通ヘッダー・フッターをトップに合わせた／v3.1：スポット詳細ページは作らないことにし、16を削除（スポットは公式サイトへのリンク）／v3.2：プラン一覧を条件バー＋箱なしカードに、特集は一覧の下へ。テーマの条件名を ?axis=、ページ送りを /plan/page/2/ に</div></div>
+  <div class="pagebar"><h2>下層ページ WF ― 概要</h2><div class="meta">2026-10-19 作成。v2：気分・季節・テーマを検索結果＋特集記事に変更／v3：URLの決めごとを反映、共通ヘッダー・フッターをトップに合わせた／v3.1：スポット詳細ページは作らないことにし、16を削除（スポットは公式サイトへのリンク）／v3.2：プラン一覧を条件バー＋箱なしカードに、特集は一覧の下へ。テーマの条件名を ?axis=、ページ送りを /plan/page/2/ に／v3.3：予約の確定についての注意書きを一覧・詳細・確認・完了の4画面に</div></div>
   <div class="purpose"><b>前提</b>：トップデザイン（v2）と同じ部品・トンマナで下層を組む。PCレイアウトを基準に描き、SPの変化は各ページの緑の注記で示す。黄色の番号は右の注記と対応。「移行元」は現サイトのURL（詳細は「大山ワンダー_コンテンツ整理表.xlsx」）。</div>
   <div class="ov"><h3>サイトマップ（企画書 6-3 をもとに整理）</h3><div class="tree">
     <div class="l1">トップ</div>
